@@ -6,179 +6,443 @@
     <title>Jogos</title>
     <link rel="stylesheet" href="style.css" />
     <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
       .container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /* Adicionando largura máxima para evitar que cresça demais */
-        max-width: 95%;
+        position: relative; /* torna o .container um ponto de referência para o posicionamento absoluto */
+        width: 960px;
+        height: 600px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1;
       }
 
-      .monitor {
-        background: #81b29a;
-        border-radius: 25px;
-        border: 2px solid #795343;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
-        width: 760px;
-        height: 530px;
-        overflow: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
-        position: relative;
-        font-family: "Arial", sans-serif;
-        color: #424242;
-        text-align: center;
-        padding: 70px;
-        /* background-image: url(imagens/f-ue.gif);
-        background-position-x: initial;
-        background-position-y: initial;
-        background-size: initial;
+      /* TOPO */
+      .container::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background-image: url("imagens/f-ue.gif");
         background-repeat: repeat-x;
-        background-attachment: initial;
-        background-origin: initial;
-        background-clip: initial;
-        background-color: initial; */
+        z-index: -1;
       }
 
-      .tela {
-        background:#f4debc;
+      /* BASE */
+      .container::after {
+        content: "";
         position: absolute;
-        /* background: url(imagens/navegador.jpg); */
-        /* background-size: cover; */
-        left: 50%;
-        top: 25px;
-        transform: translateX(-50%);
-        transform-origin: bottom;
-        border-radius: 16px;
-        border: 2px solid #795343;
-        /* Tamanhos padrão para telas maiores */
-        width: 700px;
-        height: 478px;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background-image: url("imagens/f-ue.gif");
+        background-repeat: repeat-x;
+        transform: rotate(180deg);
+        transform-origin: center;
+        z-index: -1;
+      }
+
+      /* LATERAL ESQUERDA */
+      .container .side-left {
+        content: "";
+        position: absolute;
+        top: 600px;
+        left: -20px;
+        width: 600px;
+        height: 100%;
+        background-image: url("imagens/f-ue.gif");
+        background-repeat: repeat-x;
+        transform: rotate(270deg);
+        transform-origin: top left;
+        z-index: -1;
+      }
+
+      /* LATERAL DIREITA */
+      .container .side-right {
+        content: "";
+        position: absolute;
+        top: 600px;
+        right: -10px;
+        width: 600px;
+        height: 100%;
+        background-image: url("imagens/f-ue.gif");
+        background-repeat: repeat-x;
+        transform: rotate(90deg);
+        transform-origin: top right;
+        z-index: -1;
+      }
+
+      nav {
+        background-color: #a0b18b;
+        color: white;
+        padding: 10px 20px;
+        box-sizing: border-box;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      nav li {
+        margin: 0;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+      }
+
+      main {
+        background-color: aqua;
         padding: 20px;
-        overflow: auto;
+        position: relative;
+        min-height: 300px;
+        font-family: sans-serif;
+        display: flex; /* Adiciona flexbox */
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente (se a main tiver altura definida) */
       }
 
-      .tela h1 {
-        margin: 20px 0 20px;
-        font-size: 25px;
+      .imagem-inferior-esquerda {
+        position: absolute;
+        bottom: -50px;
+        left: -80px;
+        max-width: 150px;
+        height: auto;
       }
 
-      .hearts {
-        /* position: absolute; */
-        /* top: 5px; */
-        /* right: 5px; */
-        font-size: 20px;
-        cursor: pointer;
-      }
+      /* .container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      } */
 
-      /* Telas com largura máxima de 1200px (tablets maiores) */
-      @media (max-width: 1200px) {
-        .tela {
-          width: 600px;
-          height: 410px;
-          top: 20px;
-        }
-        .monitor {
-          width: 820px;
-          height: 450px;
-        }
-      }
-
-      /* Telas com largura máxima de 768px (tablets menores) */
+      /* Para telas com largura máxima de 768 pixels (tablets, por exemplo) */
       @media (max-width: 768px) {
-        .tela {
-          width: 450px;
-          height: 308px;
-          top: 15px;
-        }
-        .monitor {
-          width: 620px;
-          height: 340px;
+        .container {
+          max-width: 95%; /* Ocupa 95% da largura em telas menores */
+          margin-left: auto;
+          margin-right: auto;
         }
       }
 
-      /* Telas com largura máxima de 480px (celulares) */
+      /* Para telas ainda menores (celulares, por exemplo) */
       @media (max-width: 480px) {
-        .tela {
-          width: 90%; /* Usar porcentagem para responsividade */
-          height: auto; /* Manter a proporção */
-          max-height: 250px; /* Limitar a altura em celulares */
-          top: 10px;
-        }
-        .monitor {
-          width: 95%; /* Usar porcentagem para responsividade */
-          height: auto; /* Manter a proporção */
-          max-height: 300px; /* Limitar a altura em celulares */
+        .container {
+          max-width: 100%; /* Ocupa toda a largura em telas pequenas */
+          margin: 0; /* Remove as margens laterais em telas pequenas */
         }
       }
-      
+
+      /* QUIZ */
+      .quiz-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 600px;
+        margin: 0;
+      }
+
+      .question {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .answers button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+        display: block;
+        width: 100%;
+        text-align: left;
+      }
+
+      .answers button:hover {
+        background-color: #0056b3;
+      }
+
+      .answers button.correct {
+        background-color: #28a745;
+      }
+
+      .answers button.wrong {
+        background-color: #dc3545;
+      }
+
+      .next-btn,
+      .retry-btn {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 20px;
+        display: none;
+        width: 100%;
+      }
+
+      .next-btn:hover,
+      .retry-btn:hover {
+        background-color: #1e7e34;
+      }
+
+      .results {
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        display: none;
+      }
+
+      .start-btn {
+        background-color: #a0b18b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .start-btn:hover {
+        background-color: #a0b18bde;
+      }
+
+      .feedback {
+        margin-top: 15px;
+        font-style: italic;
+        font-size: 1.1em;
+      }
     </style>
   </head>
+
   <body>
     <div class="container">
-      <div class="monitor">
-        <div class="tela">
-          <div class="hearts">
-            <img src="imagens/heartdivider.gif" alt="">
-          </div>
-          <!-- <div class="screen-content"> -->
-            <h1>☆ Jogos que jogamos ☆</h1>
-            <ul style="list-style-type: none">
-              <li>Aero Fighters</li>
-              <li>Super Mario Bros 3</li>
-              <li>Donkey Kong 3</li>
-              <li>Fighting Force</li>
-              <li>Resident Evil 6</li>
-              <li>Resident Evil 5</li>
-              <li>GTA V</li>
-              <li>Lego Harry Potter</li>
-              <li>A Way Out</li>
-              <li>Pode</li>
-              <li>Unruly Heroes</li>
-  
-              <li>Resident Evil 5</li>
-              <li>GTA V</li>
-              <li>Lego Harry Potter</li>
-              <li>A Way Out</li>
-              <li>Pode</li>
-              <li>Unruly Heroes</li>
-              <li>Lego Harry Potter</li>
-              <li>A Way Out</li>
-              <li>Pode</li>
-              <li>Unruly Heroes</li>
-              <li>Resident Evil 5</li>
-              <li>GTA V</li>
-              <li>Lego Harry Potter</li>
-              <li>A Way Out</li>
-              <li>Pode</li>
-              <li>Unruly Heroes</li>
-            </ul>
-          <!-- </div> -->
+      <div class="side-left"></div>
+      <div class="side-right"></div>
+      <nav>
+        <ul>
+          <li><a href="#">Jogo 1</a></li>
+          <li><a href="#">Jogo 2</a></li>
+          <li><a href="#">Jogo 3</a></li>
+        </ul>
+      </nav>
+
+      <img
+        src="imagens/heartdivider.gif"
+        alt=""
+        style="margin: 20px auto 20px auto; display: block"
+      />
+
+      <main>
+        <button id="start-button" class="start-btn">Iniciar Quiz</button>
+
+        <div class="quiz-container" style="display: none">
+          <!-- <h1>Quiz</h1> -->
+          <div id="question-container" class="question"></div>
+          <div id="answer-buttons" class="answers"></div>
+          <div id="feedback" class="feedback"></div>
+          <button id="next-button" class="next-btn">Próxima Pergunta</button>
+          <button id="finish-button" class="next-btn" style="display: none">
+            Finalizar Quiz
+          </button>
+          <button id="retry-button" class="retry-btn">Refazer Quiz</button>
+          <div id="results-container" class="results"></div>
         </div>
-      </div>
+      </main>
+      <img src="imagens/bunny.png" alt="" class="imagem-inferior-esquerda" />
     </div>
 
-    <div class="divDoBotao" style="position: fixed">
-      <a href="home.html" class="botao">
-        <img
-          src="imagens/tecla-de-seta-para-a-esquerda-64.png"
-          class="icone"
-          alt=""
-      /></a>
-    </div>
+    <script>
+      const finishButton = document.getElementById("finish-button");
 
-    <div class="clouds">
-      <div class="cloud cloud-1">
-        <img src="imagens/nuvem-100.png" alt="" />
-      </div>
-      <div class="cloud cloud-2">
-        <img src="imagens/nuvem-100.png" alt="" />
-      </div>
-      <div class="cloud cloud-3">
-        <img src="imagens/nuvem-100.png" alt="" />
-      </div>
-      <div class="cloud cloud-4">
-        <img src="imagens/nuvem-100.png" alt="" />
-      </div>
-    </div>
+      const feedbackContainer = document.getElementById("feedback");
+
+      const startButton = document.getElementById("start-button");
+      const quizContainer = document.querySelector(".quiz-container");
+
+      startButton.addEventListener("click", () => {
+        startButton.style.display = "none";
+        quizContainer.style.display = "block";
+        startQuiz();
+      }); // Adiciona um evento de clique ao botão de iniciar, retirando display: none e colocando display: block
+
+      const questionContainer = document.getElementById("question-container");
+      const answerButtonsContainer = document.getElementById("answer-buttons");
+      const nextButton = document.getElementById("next-button");
+      const retryButton = document.getElementById("retry-button");
+      const resultsContainer = document.getElementById("results-container");
+
+      let currentQuestionIndex = 0; // Armazena o índice da pergunta atual
+      let score = 0; // Armazena a pontuação
+      let questions = []; // Armazena as perguntas
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      questions = [
+        {
+          question: "Qual a capital do Brasil?",
+          answers: [
+            { text: "Rio de Janeiro", correct: false },
+            { text: "São Paulo", correct: false },
+            { text: "Brasília", correct: true },
+            { text: "Salvador", correct: false },
+          ],
+          correctFeedback: "Muito bem! Brasília é a capital do Brasil.",
+          wrongFeedback: "Resposta errada! A capital do Brasil é Brasília.",
+        },
+        {
+          question: "Qual a cor do céu em um dia claro?",
+          answers: [
+            { text: "Vermelho", correct: false },
+            { text: "Verde", correct: false },
+            { text: "Azul", correct: true },
+            { text: "Amarelo", correct: false },
+          ],
+          correctFeedback: "Certo! O céu é geralmente azul em dias claros.",
+          wrongFeedback: "Errado! A cor certa é azul.",
+        },
+      ];
+      shuffleArray(questions); // Embaralha as perguntas
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        nextButton.innerText = "Próxima Pergunta";
+        showQuestion();
+      } // Inicia o quiz
+
+      function showQuestion() {
+        resetState(); // Garante que o estado seja resetado antes de mostrar uma nova pergunta
+        const currentQuestion = questions[currentQuestionIndex];
+        const questionNumber = currentQuestionIndex + 1;
+        questionContainer.innerText = `${questionNumber}. ${currentQuestion.question}`;
+
+        currentQuestion.answers.forEach((answer) => {
+          const button = document.createElement("button");
+          button.innerText = answer.text;
+          button.classList.add("btn");
+          if (answer.correct) {
+            button.dataset.correct = answer.correct;
+          }
+          button.addEventListener("click", selectAnswer);
+          answerButtonsContainer.appendChild(button);
+        });
+      } // Exibe a pergunta
+
+      function resetState() {
+        clearStatusClass(document.body);
+        nextButton.style.display = "none";
+        retryButton.style.display = "none"; // Esconde o botão de refazer quiz
+        resultsContainer.style.display = "none";
+        while (answerButtonsContainer.firstChild) {
+          answerButtonsContainer.removeChild(answerButtonsContainer.firstChild);
+        }
+        feedbackContainer.innerText = "";
+        finishButton.style.display = "none";
+      } // Limpa o estado
+
+      function selectAnswer(e) {
+        const selectedButton = e.target;
+        const correct = selectedButton.dataset.correct;
+        setStatusClass(document.body, correct);
+        Array.from(answerButtonsContainer.children).forEach((button) => {
+          setStatusClass(button, button.dataset.correct);
+          button.disabled = true;
+        });
+        if (correct) {
+          score++;
+        }
+        if (questions.length > currentQuestionIndex + 1) {
+          nextButton.style.display = "block";
+        } else {
+          finishButton.style.display = "block";
+        }
+        const currentQuestion = questions[currentQuestionIndex];
+        feedbackContainer.innerText = correct
+          ? currentQuestion.correctFeedback
+          : currentQuestion.wrongFeedback;
+      } // Seleciona a resposta
+
+      function setStatusClass(element, correct) {
+        clearStatusClass(element);
+        if (correct) {
+          element.classList.add("correct");
+        } else {
+          element.classList.add("wrong");
+        }
+      } // Define o estilo das respostas
+
+      function clearStatusClass(element) {
+        element.classList.remove("correct");
+        element.classList.remove("wrong");
+      } // Limpa o estilo das respostas
+
+      function showResults() {
+        resetState();
+        questionContainer.innerText = `Você acertou ${score} de ${questions.length} perguntas!`;
+        resultsContainer.innerText = `Sua pontuação: ${Math.round(
+          (score / questions.length) * 100
+        )}%`;
+        resultsContainer.style.display = "block";
+        retryButton.style.display = "block"; // Exibe o botão de refazer quiz
+      } // Exibe os resultados
+
+      function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          showResults();
+        }
+      } // Passa para a próxima pergunta
+
+      function restartQuiz() {
+        startQuiz(); // Reinicia o quiz
+        retryButton.style.display = "none"; // Esconde o botão de refazer
+      }
+
+      nextButton.addEventListener("click", nextQuestion);
+
+      finishButton.addEventListener("click", () => {
+        showResults();
+        finishButton.style.display = "none";
+      }); // Finaliza o quiz
+
+      retryButton.addEventListener("click", restartQuiz);
+
+      startQuiz(); // Inicia o quiz
+    </script>
   </body>
 </html>
