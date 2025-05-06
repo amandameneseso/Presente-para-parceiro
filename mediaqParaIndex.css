@@ -1,0 +1,87 @@
+/* Para telas com largura máxima de 1980px */
+@media (max-width: 1980px) {
+    .container {
+      bottom: 27%; /* Mantém o ajuste de bottom */
+    }
+    .container .gift-box {
+      width: 200px; /* Diminui a largura da caixa de presente */
+      height: 130px; /* Diminui a altura da caixa de presente */
+    }
+    .container .gift-box::before {
+      height: 130px; /* Ajusta a altura da faixa vertical */
+      left: 80px; /* Ajusta a posição da faixa vertical */
+    }
+    .container .gift-box::after {
+      width: 200px; /* Ajusta a largura da sombra interna */
+      height: 140px; /* Ajusta a altura da sombra interna */
+    }
+    .click {
+      width: 230px; /* Diminui a largura da tampa */
+      height: 45px; /* Diminui a altura da tampa */
+      top: -45px; /* Ajusta a posição da tampa */
+      left: -15px; /* Mantém o alinhamento */
+    }
+    .click::before {
+      height: 45px; /* Ajusta a altura da faixa da tampa */
+      left: 92px; /* Ajusta a posição da faixa da tampa */
+    }
+    .click::after {
+      border-bottom: 45px solid #e76f51; /* Ajusta a altura da aba */
+      border-top: 45px solid #e76f51; /* Ajusta a altura da aba */
+      top: -70px; /* Ajusta a posição da aba */
+      left: 82px; /* Ajusta a posição da aba */
+      border-right: 45px solid transparent; /* Ajusta a largura da aba */
+    }
+    .container .shadow {
+      width: 220px; /* Diminui a largura da sombra */
+      top: 75px; /* Ajusta a posição da sombra */
+      height: 25px; /* Diminui a altura da sombra */
+    }
+  }
+
+  /* Para telas menores ainda, você pode adicionar outras media queries */
+  @media (max-width: 1200px) {
+    .container .gift-box {
+      width: 160px;
+      height: 104px;
+    }
+    .container .gift-box::before {
+      height: 104px;
+      left: 60px;
+    }
+    .container .gift-box::after {
+      width: 160px;
+      height: 112px;
+    }
+    .click {
+      width: 184px;
+      height: 36px;
+      top: -36px;
+      left: -12px;
+    }
+    .click::before {
+      height: 36px;
+      left: 73px;
+    }
+    .click::after {
+      border-bottom: 36px solid #e76f51;
+      border-top: 36px solid #e76f51;
+      top: -56px;
+      left: 66px;
+      border-right: 36px solid transparent;
+    }
+    .container .shadow {
+      width: 176px;
+      top: 60px;
+      height: 20px;
+    }
+  }
+
+  /* E assim por diante para telas ainda menores */
+  @media (max-width: 768px) {
+    /* Ajustes para tablets */
+  }
+
+  @media (max-width: 480px) {
+    /* Ajustes para celulares */
+  }

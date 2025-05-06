@@ -1,170 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <style>
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Adicionando largura máxima para evitar que cresça demais */
+        max-width: 95%;
+      }
 
-        .container:before {
-            content: "";
-            position: absolute;
-            background: #3a3a3a;
-            width: 700px;
-            height: 478px;
-            left: 50%;
-            top: 25px;
-            transform: translateX(-50%);
-            transform-origin: bottom;
-            border-radius: 16px 16px 0 0;
-            border: 2px solid #3a3a3a;
-            z-index: 2;
-        }
+      .monitor {
+        background: #81b29a;
+        border-radius: 25px;
+        border: 2px solid #795343;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+        width: 760px;
+        height: 530px;
+        overflow: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
+        position: relative;
+        font-family: "Arial", sans-serif;
+        color: #424242;
+        text-align: center;
+        padding: 70px;
+        /* background-image: url(imagens/f-ue.gif);
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat: repeat-x;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: initial; */
+      }
 
+      .tela {
+        background:#f4debc;
+        position: absolute;
+        /* background: url(imagens/navegador.jpg); */
+        /* background-size: cover; */
+        left: 50%;
+        top: 25px;
+        transform: translateX(-50%);
+        transform-origin: bottom;
+        border-radius: 16px;
+        border: 2px solid #795343;
+        /* Tamanhos padrão para telas maiores */
+        width: 700px;
+        height: 478px;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      .tela h1 {
+        margin: 20px 0 20px;
+        font-size: 25px;
+      }
+
+      .hearts {
+        /* position: absolute; */
+        /* top: 5px; */
+        /* right: 5px; */
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Telas com largura máxima de 1200px (tablets maiores) */
+      @media (max-width: 1200px) {
+        .tela {
+          width: 600px;
+          height: 410px;
+          top: 20px;
+        }
         .monitor {
-            width: 750px;
-            height: 530px;
-            background: #242424;
-            /* border-bottom: 40px solid #a12020; */
-            border-radius: 25px 25px 0 0;
-            border: 2px solid #f0328a;
-            z-index: 1;
+          width: 820px;
+          height: 450px;
         }
+      }
 
-        .monitor:before {
-            content: "";
-            position: absolute;
-            background: #242424;
-            width: 140px;
-            height: 40px;
-            left: 50%;
-            bottom: -20px;
-            transform: translateX(-50%);
-            transform-origin: bottom;
-            border-radius: 0 0 20px 20px;
-            border: 2px solid #f0328a;
-            z-index: -1;
+      /* Telas com largura máxima de 768px (tablets menores) */
+      @media (max-width: 768px) {
+        .tela {
+          width: 450px;
+          height: 308px;
+          top: 15px;
         }
-
-        .monitor:after {
-            content: "";
-            position: absolute;
-            background: #242424;
-            width: 860px;
-            height: 40px;
-            left: 50%;
-            bottom: -42px;
-            transform: translateX(-50%);
-            transform-origin: bottom;
-            border-radius: 0 0 40px 40px;
-            border: 2px solid #f0328a;
-            z-index: -2;
-            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+        .monitor {
+          width: 620px;
+          height: 340px;
         }
+      }
 
-        .screen-content {
-            color: rgb(255, 255, 255);
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 20px;
-            top: 20px;
-            position: relative; /* Necessário para aplicar z-index */
-            z-index: 3; /* Coloca acima de .container:before */
+      /* Telas com largura máxima de 480px (celulares) */
+      @media (max-width: 480px) {
+        .tela {
+          width: 90%; /* Usar porcentagem para responsividade */
+          height: auto; /* Manter a proporção */
+          max-height: 250px; /* Limitar a altura em celulares */
+          top: 10px;
         }
-
-        .screen-content h1 {
-            font-size: 20px;
-            margin-bottom: 20px;
+        .monitor {
+          width: 95%; /* Usar porcentagem para responsividade */
+          height: auto; /* Manter a proporção */
+          max-height: 300px; /* Limitar a altura em celulares */
         }
-
-        .game-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap; /* Para ajustar em telas menores */
-        }
-
-        .game {
-            text-align: center;
-            max-width: 120px;
-        }
-
-        .game img {
-            max-width: 100%;
-            height: auto;
-            aspect-ratio: 2.3/3;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #f0328a;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .game img:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 4px 15px rgba(240, 50, 139, 0.6);
-        }
-
-        @media (max-width: 768px) {
-            .monitor {
-                width: 90%;
-                height: auto;
-            }
-
-            .container:before {
-                width: 90%;
-                height: auto;
-            }
-        }
+      }
+      
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <div class="monitor">
-            <div class="screen-content">
-                <h1>☆ Jogos que jogamos</h1>
-                <div class="game-gallery">
-                    <div class="game">
-                        <img src="imagens/Resident_evil_6.jpg" alt="Jogo 1">
-                    </div>
-                    <div class="game">
-                        <img src="imagens/Super_Mario_Bros._3.png" alt="Jogo 2">
-                    </div>
-                    <div class="game">
-                        <img src="imagens/Aero_Fighters.png" alt="Jogo 3">
-                    </div>
-                </div>
-                <h1>☆ Estamos jogando</h1>
-                <div class="game-gallery">
-                    <div class="game">
-                        <img src="imagens/Resident_evil_5.png" alt="Jogo 1">
-                    </div>
-                    <div class="game">
-                        <img src="imagens/GTA_5.jpg" alt="Jogo 2">
-                    </div>
-                </div>
-            </div>
+      <div class="monitor">
+        <div class="tela">
+          <div class="hearts">
+            <img src="imagens/heartdivider.gif" alt="">
+          </div>
+          <!-- <div class="screen-content"> -->
+            <h1>☆ Jogos que jogamos ☆</h1>
+            <ul style="list-style-type: none">
+              <li>Aero Fighters</li>
+              <li>Super Mario Bros 3</li>
+              <li>Donkey Kong 3</li>
+              <li>Fighting Force</li>
+              <li>Resident Evil 6</li>
+              <li>Resident Evil 5</li>
+              <li>GTA V</li>
+              <li>Lego Harry Potter</li>
+              <li>A Way Out</li>
+              <li>Pode</li>
+              <li>Unruly Heroes</li>
+  
+              <li>Resident Evil 5</li>
+              <li>GTA V</li>
+              <li>Lego Harry Potter</li>
+              <li>A Way Out</li>
+              <li>Pode</li>
+              <li>Unruly Heroes</li>
+              <li>Lego Harry Potter</li>
+              <li>A Way Out</li>
+              <li>Pode</li>
+              <li>Unruly Heroes</li>
+              <li>Resident Evil 5</li>
+              <li>GTA V</li>
+              <li>Lego Harry Potter</li>
+              <li>A Way Out</li>
+              <li>Pode</li>
+              <li>Unruly Heroes</li>
+            </ul>
+          <!-- </div> -->
         </div>
+      </div>
     </div>
 
-    <div class="divDoBotao">
-        <a href="home.html" class="botao">
-          <img src="imagens/tecla-de-seta-para-a-esquerda-64.png" class="icone" alt=""></a>
+    <div class="divDoBotao" style="position: fixed">
+      <a href="home.html" class="botao">
+        <img
+          src="imagens/tecla-de-seta-para-a-esquerda-64.png"
+          class="icone"
+          alt=""
+      /></a>
     </div>
 
     <div class="clouds">
-        <div class="cloud cloud-1"><img src="imagens/nuvem-100.png" alt=""></div>
-        <div class="cloud cloud-2"><img src="imagens/nuvem-100.png" alt=""></div>
-        <div class="cloud cloud-3"><img src="imagens/nuvem-100.png" alt=""></div>
-        <div class="cloud cloud-4"><img src="imagens/nuvem-100.png" alt=""></div>
+      <div class="cloud cloud-1">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-2">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-3">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-4">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
