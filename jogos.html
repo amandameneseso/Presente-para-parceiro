@@ -19,10 +19,11 @@
         height: 600px;
         margin: 60px auto;
         padding: 40px;
-        background-color: white;
+        /* background-color: white; */
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 1;
+        /* z-index: 1; */
+        background-image: url(imagens/bg14.png);
       }
 
       /* TOPO */
@@ -88,6 +89,7 @@
         color: white;
         padding: 10px 20px;
         box-sizing: border-box;
+        border-radius: 10px;
       }
 
       nav ul {
@@ -108,7 +110,7 @@
       }
 
       main {
-        background-color: aqua;
+        /* background-color: aqua; */
         padding: 20px;
         position: relative;
         min-height: 300px;
@@ -246,6 +248,7 @@
     <div class="container">
       <div class="side-left"></div>
       <div class="side-right"></div>
+
       <nav>
         <ul>
           <li><a href="#">Jogo 1</a></li>
@@ -254,12 +257,24 @@
         </ul>
       </nav>
 
-      <img
-        src="imagens/heartdivider.gif"
-        alt=""
-        style="margin: 20px auto 20px auto; display: block"
-      />
-
+      <div style="text-align: center">
+        <img
+          src="imagens/divbiscuit.gif"
+          alt=""
+          style="margin: 20px auto 20px auto;"
+        />
+        <img
+          src="imagens/divbiscuit.gif"
+          alt=""
+          style="margin: 20px auto 20px auto;"
+        />
+        <img
+          src="imagens/divbiscuit.gif"
+          alt=""
+          style="margin: 20px auto 20px auto;"
+        />
+      </div>
+      
       <main>
         <button id="start-button" class="start-btn">Iniciar Quiz</button>
 
@@ -276,6 +291,7 @@
           <div id="results-container" class="results"></div>
         </div>
       </main>
+      
       <img src="imagens/bunny.png" alt="" class="imagem-inferior-esquerda" />
     </div>
 
