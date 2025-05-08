@@ -52,7 +52,7 @@ questions = [
       { text: "Batata frita", correct: false },
     ],
     correctFeedback:
-      "Isso mesmo! Quem precisa de um jantar chique quando existe macarrão com sardinha?!",
+      "Quem precisa de um jantar chique quando existe macarrão com sardinha?!",
     wrongFeedback: "Errado! Mas relaxa, a macarronada te perdoa...",
   },
   {
@@ -118,7 +118,7 @@ shuffleArray(questions); // Embaralha as perguntas
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  nextButton.innerText = "Próxima Pergunta";
+  nextButton.innerText = "Próxima";
   showQuestion();
 } // Inicia o quiz
 

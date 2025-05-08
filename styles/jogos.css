@@ -149,10 +149,11 @@ main {
 
 /* QUIZ */
 .quiz-container {
-  background-color: white;
+  background-color: #a0b18b;
+  color: white;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
   width: 80%;
   max-width: 600px;
   margin: 0;
@@ -165,7 +166,7 @@ main {
 }
 
 .answers button {
-  background-color: #007bff;
+  background-color: #ffffff00;
   color: white;
   border: none;
   border-radius: 5px;
@@ -173,6 +174,7 @@ main {
   margin: 5px;
   cursor: pointer;
   font-size: 1em;
+  font-weight: 600;
   transition: background-color 0.3s ease;
   display: block;
   width: 100%;
@@ -180,20 +182,21 @@ main {
 }
 
 .answers button:hover {
-  background-color: #0056b3;
+  background-color: #9b7762;
 }
 
 .answers button.correct {
-  background-color: #28a745;
+  color: rgb(73, 121, 84);
 }
 
 .answers button.wrong {
-  background-color: #dc3545;
+  /* background-color: #e66864; */
+  color: #ffffff;
 }
 
 .next-btn,
 .retry-btn {
-  background-color: #28a745;
+  background-color: #9b7762;
   color: white;
   border: none;
   border-radius: 5px;
@@ -202,12 +205,15 @@ main {
   font-size: 1em;
   margin-top: 20px;
   display: none;
-  width: 100%;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.3s ease;
 }
 
 .next-btn:hover,
 .retry-btn:hover {
-  background-color: #1e7e34;
+  background-color: #8a6b5a;
 }
 
 .results {
@@ -227,14 +233,16 @@ main {
   cursor: pointer;
   font-size: 1.2em;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .start-btn:hover {
-  background-color: #a0b18bde;
+  background-color: #889678de;
 }
 
 .feedback {
   margin-top: 15px;
   font-style: italic;
-  font-size: 1.1em;
+  font-size: 1em;
+  text-align: center;
 }
