@@ -227,3 +227,39 @@ finishButton.addEventListener("click", () => {
 retryButton.addEventListener("click", restartQuiz);
 
 startQuiz(); // Inicia o quiz
+
+document.getElementById("jogo1-link").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("jogo1-container").style.display = "block";
+  document.getElementById("jogo2-container").style.display = "none";
+  document.getElementById("jogo3-container").style.display = "none";
+}); // Adiciona um evento de clique ao link do jogo 1 que oculta os outros jogos
+
+document.getElementById("jogo2-link").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("jogo1-container").style.display = "none";
+  document.getElementById("jogo2-container").style.display = "block";
+  document.getElementById("jogo3-container").style.display = "none";
+}); // Adiciona um evento de clique ao link do jogo 2 que oculta os outros jogos
+
+document.getElementById("jogo3-link").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("jogo1-container").style.display = "none";
+  document.getElementById("jogo2-container").style.display = "none";
+  document.getElementById("jogo3-container").style.display = "block";
+}); // Adiciona um evento de clique ao link do jogo 3 que oculta os outros jogos
+
+document.getElementById('jogo1-link').addEventListener('click', function () {
+  document.getElementById('mensagem-inicial').style.display = 'none';
+  // document.getElementById('start-button').style.display = 'block';
+}); // oculta a mensagem inicial quando o jogo 1 é clicado
+
+document.getElementById('jogo2-link').addEventListener('click', function () {
+  document.getElementById('mensagem-inicial').style.display = 'none';
+}); // oculta a mensagem inicial quando o jogo 2 é clicado
+
+document.getElementById('jogo3-link').addEventListener('click', function () {
+  document.getElementById('mensagem-inicial').style.display = 'none';
+}); // oculta a mensagem inicial quando o jogo 3 é clicado
+
+

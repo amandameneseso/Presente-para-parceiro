@@ -118,9 +118,9 @@ main {
 
 .imagem-inferior-esquerda {
   position: absolute;
-  bottom: -50px;
-  left: -80px;
-  max-width: 150px;
+  bottom: -45px;
+  left: -70px;
+  max-width: 145px;
   height: auto;
 }
 
@@ -155,9 +155,13 @@ main {
   border-radius: 8px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
   width: 80%;
-  max-width: 600px;
-  margin: 0;
+  width: 600px;
+  margin: auto;
   display: none;
+  min-height: 200px;
+  /* min-width: 500px; */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .question {
@@ -182,7 +186,7 @@ main {
 }
 
 .answers button:hover {
-  background-color: #9b7762;
+  background-color: #b89c85;
 }
 
 .answers button.correct {
@@ -196,16 +200,17 @@ main {
 
 .next-btn,
 .retry-btn {
-  background-color: #9b7762;
+  background-color: #b89c85;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1em;
+  font-weight: bold;
   margin-top: 20px;
   display: none;
-  width: 25%;
+  width: 28%;
   margin-left: auto;
   margin-right: auto;
   transition: background-color 0.3s ease;
@@ -213,7 +218,7 @@ main {
 
 .next-btn:hover,
 .retry-btn:hover {
-  background-color: #8a6b5a;
+  background-color: #ad8f76;
 }
 
 .results {
@@ -246,3 +251,77 @@ main {
   font-size: 1em;
   text-align: center;
 }
+
+.mensagem-inicial {
+  text-align: center;
+  font-size: 1.2em;
+  color: #a0b18b;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .quiz-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #div1 {
+    /* position: relative; */
+    /* top: 1px; */
+  }
+
+  #div2 {
+    display: none;
+  }
+
+  #div3 {
+    display: none;
+  }
+
+  .answers button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+  }
+
+  .next-btn,
+  .retry-btn {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .container {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .imagem-inferior-esquerda {
+    position: absolute;
+    bottom: -40px;
+    left: -39px;
+    max-width: 90px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-container {
+    padding: 15px;
+  }
+
+  .question {
+    font-size: 1em;
+  }
+
+  .answers button {
+    font-size: 0.85em;
+    padding: 8px 12px;
+  }
+
+  .next-btn,
+  .retry-btn {
+    width: 100%;
+    font-size: 0.95em;
+  }
+}
+
