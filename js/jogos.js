@@ -28,26 +28,89 @@ function shuffleArray(array) {
 
 questions = [
   {
-    question: "Qual a capital do Brasil?",
+    question: "Onde foi nosso primeiro encontro?",
     answers: [
-      { text: "Rio de Janeiro", correct: false },
-      { text: "São Paulo", correct: false },
-      { text: "Brasília", correct: true },
-      { text: "Salvador", correct: false },
+      { text: "No mercadinho", correct: false },
+      { text: "Na lanchonete da esquina", correct: false },
+      {
+        text: "No cinema vendo aquele filme que ninguém entendeu nada",
+        correct: true,
+      },
+      { text: "Num piquenique romântico no parque", correct: false },
     ],
-    correctFeedback: "Muito bem! Brasília é a capital do Brasil.",
-    wrongFeedback: "Resposta errada! A capital do Brasil é Brasília.",
+    correctFeedback:
+      "Acertou! Quem diria que um combo de pipoca e nervosismo renderia esse romance?",
+    wrongFeedback:
+      "Errrooou :( Mas valeu a tentativa, tenta de novo na próxima!",
   },
   {
-    question: "Qual a cor do céu em um dia claro?",
+    question: "Qual é a minha comida favorita?",
     answers: [
-      { text: "Vermelho", correct: false },
-      { text: "Verde", correct: false },
-      { text: "Azul", correct: true },
-      { text: "Amarelo", correct: false },
+      { text: "Sushi", correct: false },
+      { text: "Pizza", correct: false },
+      { text: "Macarronada de sardinha da sua mãe", correct: true },
+      { text: "Batata frita", correct: false },
     ],
-    correctFeedback: "Certo! O céu é geralmente azul em dias claros.",
-    wrongFeedback: "Errado! A cor certa é azul.",
+    correctFeedback:
+      "Isso mesmo! Quem precisa de um jantar chique quando existe macarrão com sardinha?!",
+    wrongFeedback: "Errado! Mas relaxa, a macarronada te perdoa...",
+  },
+  {
+    question: "Qual é o meu filme favorito?",
+    answers: [
+      { text: "Forrest Gump", correct: false },
+      { text: "Shrek", correct: false },
+      { text: "Titanic", correct: false },
+      { text: "Irmão Urso", correct: true },
+    ],
+    correctFeedback: "Acertou! E sorte sua que eu não esqueço tudo todo dia.",
+    wrongFeedback: "Errado! Mas valeu a tentativa, tenta de novo na próxima!",
+  },
+  {
+    question: "Quando começamos a namorar?",
+    answers: [
+      { text: "25/11/2023", correct: false },
+      { text: "14/06/2022", correct: false },
+      { text: "04/07/2024", correct: true },
+      { text: "18/09/2024", correct: false },
+    ],
+    correctFeedback: "Acertou! Esse dia foi incrivelmente especial...",
+    wrongFeedback: "Errado. Alguém vai dormir no sofá hoje!",
+  },
+  {
+    question: "Quem é o mais bagunceiro?",
+    answers: [
+      { text: "Eu (o(a) amorzinho(a) que fez esse site)", correct: false },
+      { text: "Você", correct: true },
+      { text: "O gato", correct: false },
+      { text: "O universo conspira contra nós", correct: false },
+    ],
+    correctFeedback: "Boa :) Isso já é meio caminho pra arrumar a bagunça.",
+    wrongFeedback: "Negar não ajuda... a toalha no sofá te entregou.",
+  },
+  {
+    question: "Quem faz mais drama?",
+    answers: [
+      { text: "Eu (o(a) amorzinho(a) que fez esse site)", correct: true },
+      { text: "Você", correct: false },
+      { text: "Os dois", correct: false },
+      { text: "O wi-fi quando cai", correct: false },
+    ],
+    correctFeedback:
+      "Acertou! Infelizmente (ou felizmente) o Oscar de melhor drama vai para mim.",
+    wrongFeedback:
+      "Nããão, que injustiça! O drama é meu superpoder (ou defeito, dependendo do dia).",
+  },
+  {
+    question: "O que você acha que eu mais gosto em você?",
+    answers: [
+      { text: "Sua personalidade", correct: false },
+      { text: "Sua aparência", correct: false },
+      { text: "Seu cuidado comigo", correct: false },
+      { text: "Todas essas coisas e muito mais...", correct: true },
+    ],
+    correctFeedback: "Isso mesmo, namolado!",
+    wrongFeedback: "Errado! Mas valeu a tentativa, tenta de novo na próxima!",
   },
 ];
 shuffleArray(questions); // Embaralha as perguntas
