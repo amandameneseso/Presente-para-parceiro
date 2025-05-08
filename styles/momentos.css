@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: url(https://cur.cursors-4u.net/nature/nat-11/nat1028.ani),
+    url(https://cur.cursors-4u.net/nature/nat-11/nat1028.gif), auto !important; /* https://www.cursors-4u.com */
 }
 
 body {

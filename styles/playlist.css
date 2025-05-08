@@ -218,6 +218,7 @@ input#volume-control::-moz-range-track {
   top: -20px;
   left: 25px;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .headshell:after {
