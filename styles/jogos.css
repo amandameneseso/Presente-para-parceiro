@@ -150,7 +150,7 @@ main {
 /* QUIZ */
 .quiz-container {
   background-color: #a0b18b;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 30px;
   border-radius: 8px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);

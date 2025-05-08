@@ -217,6 +217,11 @@ nextButton.addEventListener("click", nextQuestion);
 finishButton.addEventListener("click", () => {
   showResults();
   finishButton.style.display = "none";
+  confetti({
+    particleCount: 100, // Número de confetes
+    spread: 70, // Espalhamento dos confetes
+    origin: { y: 0.6 }, // Ponto de origem (opcional, ajusta a altura)
+  }); // Adiciona efeito de confetes (canvas-confetti)
 }); // Finaliza o quiz
 
 retryButton.addEventListener("click", restartQuiz);
