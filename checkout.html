@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Presente para Parceiro</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      header {
+        text-align: center;
+        padding: 20px 0;
+      }
+      
+      h1 {
+        color: #ff6b6b;
+        margin-bottom: 15px;
+      }
+      
+      .checkout-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      
+      .checkout-form {
+        flex: 1;
+        min-width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 25px;
+      }
+      
+      .order-summary {
+        width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 25px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      
+      input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      
+      .payment-options {
+        margin-top: 20px;
+      }
+      
+      .payment-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      
+      .payment-option input {
+        width: auto;
+        margin-right: 10px;
+      }
+      
+      .submit-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        margin-top: 20px;
+      }
+      
+      .submit-button:hover {
+        background-color: #ff5252;
+      }
+      
+      .plan-details {
+        margin-bottom: 20px;
+      }
+      
+      .plan-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .plan-price {
+        font-size: 24px;
+        color: #ff6b6b;
+        margin-bottom: 15px;
+      }
+      
+      .plan-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .plan-features li {
+        padding: 5px 0;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .plan-features li:last-child {
+        border-bottom: none;
+      }
+      
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 2px solid #eee;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #ff6b6b;
+        text-decoration: none;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      .clouds {
+        z-index: -1;
+      }
+      
+      .section-title {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Finalizar Compra</h1>
+        <p>Está quase lá! Complete suas informações para finalizar a compra do seu presente personalizado.</p>
+      </header>
+      
+      <div class="checkout-container">
+        <div class="checkout-form">
+          <h2 class="section-title">Informações Pessoais</h2>
+          <form id="checkout-form" onsubmit="return processCheckout(event)">
+            <div class="form-group">
+              <label for="name">Nome Completo</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Telefone</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <h2 class="section-title">Personalização do Presente</h2>
+            
+            <div class="form-group">
+              <label for="recipient-name">Nome do Destinatário</label>
+              <input type="text" id="recipient-name" name="recipient-name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="special-date">Data Especial (opcional)</label>
+              <input type="date" id="special-date" name="special-date">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Mensagem Personalizada</label>
+              <textarea id="message" name="message" rows="4" placeholder="Escreva uma mensagem especial para seu parceiro(a)"></textarea>
+            </div>
+            
+            <h2 class="section-title">Informações de Pagamento</h2>
+            
+            <div class="payment-options">
+              <div class="payment-option">
+                <input type="radio" id="credit-card" name="payment-method" value="credit-card" checked>
+                <label for="credit-card">Cartão de Crédito</label>
+              </div>
+              
+              <div class="payment-option">
+                <input type="radio" id="pix" name="payment-method" value="pix">
+                <label for="pix">PIX</label>
+              </div>
+              
+              <div class="payment-option">
+                <input type="radio" id="boleto" name="payment-method" value="boleto">
+                <label for="boleto">Boleto Bancário</label>
+              </div>
+            </div>
+            
+            <div id="credit-card-fields">
+              <div class="form-group">
+                <label for="card-number">Número do Cartão</label>
+                <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000">
+              </div>
+              
+              <div class="form-group">
+                <label for="card-name">Nome no Cartão</label>
+                <input type="text" id="card-name" name="card-name">
+              </div>
+              
+              <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                  <label for="expiry-date">Data de Validade</label>
+                  <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA">
+                </div>
+                
+                <div class="form-group" style="flex: 1;">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" name="cvv" placeholder="123">
+                </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-button">Finalizar Compra</button>
+          </form>
+        </div>
+        
+        <div class="order-summary">
+          <h2 class="section-title">Resumo do Pedido</h2>
+          
+          <div class="plan-details">
+            <div class="plan-name">Plano: <span id="plan-name">Premium</span></div>
+            <div class="plan-price">R$ <span id="plan-price">79.90</span></div>
+            
+            <ul class="plan-features" id="plan-features">
+              <li>Página de presente personalizada</li>
+              <li>Playlist com 10 músicas</li>
+              <li>Carta de amor</li>
+              <li>Álbum de fotos (até 10 fotos)</li>
+              <li>Validade: 1 ano</li>
+            </ul>
+          </div>
+          
+          <div class="total-row">
+            <span>Total:</span>
+            <span>R$ <span id="total-price">79.90</span></span>
+          </div>
+          
+          <a href="loja.html" class="back-link">← Voltar para a loja</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="clouds">
+      <div class="cloud cloud-1">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-2">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-3">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-4">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+    </div>
+    
+    <script>
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const plan = urlParams.get('plan') || 'premium';
+      
+      // Plan details
+      const plans = {
+        basic: {
+          name: 'Básico',
+          price: '49.90',
+          features: [
+            'Página de presente personalizada',
+            'Playlist com 3 músicas',
+            'Carta de amor',
+            'Validade: 3 meses'
+          ]
+        },
+        premium: {
+          name: 'Premium',
+          price: '79.90',
+          features: [
+            'Página de presente personalizada',
+            'Playlist com 10 músicas',
+            'Carta de amor',
+            'Álbum de fotos (até 10 fotos)',
+            'Validade: 1 ano'
+          ]
+        },
+        exclusive: {
+          name: 'Exclusivo',
+          price: '129.90',
+          features: [
+            'Página de presente personalizada',
+            'Playlist ilimitada',
+            'Carta de amor',
+            'Álbum de fotos ilimitado',
+            'Jogo personalizado',
+            'Linha do tempo da relação',
+            'Validade: Vitalício'
+          ]
+        }
+      };
+      
+      // Update order summary
+      document.getElementById('plan-name').textContent = plans[plan].name;
+      document.getElementById('plan-price').textContent = plans[plan].price;
+      document.getElementById('total-price').textContent = plans[plan].price;
+      
+      // Update features list
+      const featuresElement = document.getElementById('plan-features');
+      featuresElement.innerHTML = '';
+      plans[plan].features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        featuresElement.appendChild(li);
+      });
+      
+      // Toggle payment fields
+      const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+      const creditCardFields = document.getElementById('credit-card-fields');
+      
+      paymentMethods.forEach(method => {
+        method.addEventListener('change', function() {
+          if (this.value === 'credit-card') {
+            creditCardFields.style.display = 'block';
+          } else {
+            creditCardFields.style.display = 'none';
+          }
+        });
+      });
+      
+      // Process checkout
+      function processCheckout(event) {
+        event.preventDefault();
+        
+        // Aqui você integraria com um sistema de pagamento real
+        alert('Pagamento processado com sucesso! Em breve você receberá um e-mail com instruções para personalizar seu presente.');
+        
+        // Redirecionar para página de sucesso
+        // window.location.href = 'success.html';
+        
+        // Na implementação real, você enviaria os dados para seu backend
+        // para processamento do pagamento e criação do presente personalizado
+        return false;
+      }
+    </script>
+  </body>
+</html>

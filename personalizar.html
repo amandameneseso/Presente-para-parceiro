@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalizar Presente</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      header {
+        text-align: center;
+        padding: 20px 0;
+      }
+      
+      h1 {
+        color: #ff6b6b;
+        margin-bottom: 15px;
+      }
+      
+      .customize-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      
+      input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        margin-right: 10px;
+      }
+      
+      .tab.active {
+        border-bottom-color: #ff6b6b;
+        font-weight: bold;
+      }
+      
+      .tab-content {
+        display: none;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      .song-entry, .photo-entry {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+      }
+      
+      .song-entry input, .photo-entry input {
+        flex: 1;
+      }
+      
+      .remove-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .add-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      
+      .preview-button {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 15px;
+      }
+      
+      .save-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .button-container {
+        text-align: center;
+        margin-top: 30px;
+      }
+      
+      .timeline-entry {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        align-items: flex-start;
+      }
+      
+      .timeline-entry input[type="date"] {
+        width: 150px;
+        flex-shrink: 0;
+      }
+      
+      .timeline-entry textarea {
+        flex: 1;
+        min-height: 80px;
+      }
+      
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+      
+      .file-upload input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+      
+      .file-upload-label {
+        display: block;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px dashed #ddd;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+      }
+      
+      .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+      
+      .step {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+      }
+      
+      .step::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+        z-index: -1;
+      }
+      
+      .step:last-child::after {
+        display: none;
+      }
+      
+      .step-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #ddd;
+        color: white;
+        border-radius: 50%;
+        line-height: 30px;
+        margin-bottom: 5px;
+      }
+      
+      .step.active .step-number {
+        background-color: #ff6b6b;
+      }
+      
+      .step.completed .step-number {
+        background-color: #4CAF50;
+      }
+      
+      .cloud {
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Personalizar Seu Presente</h1>
+        <p>Torne este presente único adicionando sua seleção de músicas, fotos, e mensagens especiais.</p>
+      </header>
+      
+      <div class="progress-steps">
+        <div class="step completed">
+          <div class="step-number">1</div>
+          <div>Compra</div>
+        </div>
+        <div class="step active">
+          <div class="step-number">2</div>
+          <div>Personalização</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div>Finalização</div>
+        </div>
+      </div>
+      
+      <div class="customize-container">
+        <div class="tabs">
+          <div class="tab active" data-tab="general">Geral</div>
+          <div class="tab" data-tab="playlist">Playlist</div>
+          <div class="tab" data-tab="letter">Carta</div>
+          <div class="tab" data-tab="photos">Fotos</div>
+          <div class="tab" data-tab="timeline">Linha do Tempo</div>
+        </div>
+        
+        <div class="tab-content active" id="general-tab">
+          <h2>Informações Gerais</h2>
+          
+          <div class="form-group">
+            <label for="recipient-name">Nome do Destinatário</label>
+            <input type="text" id="recipient-name" name="recipient-name" placeholder="Como seu parceiro(a) se chama?">
+          </div>
+          
+          <div class="form-group">
+            <label for="custom-greeting">Saudação Personalizada</label>
+            <input type="text" id="custom-greeting" name="custom-greeting" placeholder="Ex: Feliz Aniversário, meu amor!">
+          </div>
+          
+          <div class="form-group">
+            <label for="theme-color">Cor do Tema</label>
+            <input type="color" id="theme-color" name="theme-color" value="#ff6b6b">
+          </div>
+          
+          <div class="form-group">
+            <label for="custom-url">URL Personalizada (opcional)</label>
+            <input type="text" id="custom-url" name="custom-url" placeholder="Ex: joaoemariaaniversario">
+            <small>Seu presente ficará disponível em presenteparaparceiro.com/presente/sua-url</small>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="playlist-tab">
+          <h2>Playlist Personalizada</h2>
+          <p>Adicione as músicas que têm significado especial para vocês.</p>
+          
+          <div id="song-list">
+            <div class="song-entry">
+              <input type="text" placeholder="Nome da música" class="song-name">
+              <input type="text" placeholder="Artista" class="song-artist">
+              <button class="remove-button" onclick="removeSong(this)">Remover</button>
+            </div>
+          </div>
+          
+          <button class="add-button" onclick="addSong()">+ Adicionar Música</button>
+          
+          <div class="form-group">
+            <label for="upload-mp3">Ou faça upload das suas próprias músicas (MP3)</label>
+            <div class="file-upload">
+              <input type="file" id="upload-mp3" name="upload-mp3" accept=".mp3" multiple>
+              <div class="file-upload-label">Clique para selecionar arquivos MP3</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="letter-tab">
+          <h2>Carta de Amor</h2>
+          <p>Escreva uma mensagem especial para seu parceiro(a).</p>
+          
+          <div class="form-group">
+            <label for="letter-message">Sua Mensagem</label>
+            <textarea id="letter-message" name="letter-message" rows="10" placeholder="Escreva aqui sua carta de amor..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="letter-template">Escolha um Modelo (opcional)</label>
+            <select id="letter-template" onchange="applyTemplate()">
+              <option value="">Selecione um modelo</option>
+              <option value="aniversario">Aniversário</option>
+              <option value="namoro">Aniversário de Namoro</option>
+              <option value="casamento">Aniversário de Casamento</option>
+              <option value="declaracao">Declaração de Amor</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="photos-tab">
+          <h2>Álbum de Fotos</h2>
+          <p>Adicione fotos de momentos especiais que vocês compartilharam.</p>
+          
+          <div class="form-group">
+            <label for="upload-photos">Selecione Fotos</label>
+            <div class="file-upload">
+              <input type="file" id="upload-photos" name="upload-photos" accept="image/*" multiple>
+              <div class="file-upload-label">Clique para selecionar fotos</div>
+            </div>
+          </div>
+          
+          <div id="photo-list">
+            <!-- Fotos adicionadas aparecerão aqui -->
+          </div>
+        </div>
+        
+        <div class="tab-content" id="timeline-tab">
+          <h2>Linha do Tempo</h2>
+          <p>Registre os momentos mais importantes da história de vocês.</p>
+          
+          <div id="timeline-list">
+            <div class="timeline-entry">
+              <input type="date" class="timeline-date">
+              <textarea placeholder="Descreva o que aconteceu nesse dia..." class="timeline-description"></textarea>
+              <button class="remove-button" onclick="removeTimelineEntry(this)">Remover</button>
+            </div>
+          </div>
+          
+          <button class="add-button" onclick="addTimelineEntry()">+ Adicionar Momento</button>
+        </div>
+      </div>
+      
+      <div class="button-container">
+        <button class="preview-button" onclick="previewPresent()">Visualizar Presente</button>
+        <button class="save-button" onclick="savePresent()">Salvar e Finalizar</button>
+      </div>
+    </div>
+    
+    <div class="clouds">
+      <div class="cloud cloud-1">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-2">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-3">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-4">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+    </div>
+    
+    <script>
+      // Tab Navigation
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Remove active class from all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          // Add active class to clicked tab
+          this.classList.add('active');
+          
+          // Hide all tab contents
+          const tabContents = document.querySelectorAll('.tab-content');
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Show selected tab content
+          const tabId = this.getAttribute('data-tab') + '-tab';
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // Add song to playlist
+      function addSong() {
+        const songList = document.getElementById('song-list');
+        const songEntry = document.createElement('div');
+        songEntry.className = 'song-entry';
+        songEntry.innerHTML = `
+          <input type="text" placeholder="Nome da música" class="song-name">
+          <input type="text" placeholder="Artista" class="song-artist">
+          <button class="remove-button" onclick="removeSong(this)">Remover</button>
+        `;
+        songList.appendChild(songEntry);
+      }
+      
+      // Remove song from playlist
+      function removeSong(button) {
+        const songEntry = button.parentNode;
+        songEntry.parentNode.removeChild(songEntry);
+      }
+      
+      // Add timeline entry
+      function addTimelineEntry() {
+        const timelineList = document.getElementById('timeline-list');
+        const timelineEntry = document.createElement('div');
+        timelineEntry.className = 'timeline-entry';
+        timelineEntry.innerHTML = `
+          <input type="date" class="timeline-date">
+          <textarea placeholder="Descreva o que aconteceu nesse dia..." class="timeline-description"></textarea>
+          <button class="remove-button" onclick="removeTimelineEntry(this)">Remover</button>
+        `;
+        timelineList.appendChild(timelineEntry);
+      }
+      
+      // Remove timeline entry
+      function removeTimelineEntry(button) {
+        const timelineEntry = button.parentNode;
+        timelineEntry.parentNode.removeChild(timelineEntry);
+      }
+      
+      // Apply letter template
+      function applyTemplate() {
+        const template = document.getElementById('letter-template').value;
+        const letterMessage = document.getElementById('letter-message');
+        
+        if (template === 'aniversario') {
+          letterMessage.value = 'Feliz aniversário, meu amor!\n\nEm cada ano que passa, meu amor por você só aumenta. Quero celebrar não apenas o dia do seu nascimento, mas todos os dias ao seu lado. Você traz alegria para minha vida e sou grato(a) por cada momento que compartilhamos.\n\nCom todo meu amor,';
+        } else if (template === 'namoro') {
+          letterMessage.value = 'Feliz aniversário de namoro!\n\nHoje celebramos mais um ano juntos, compartilhando sonhos, superando desafios e construindo memórias. Cada dia ao seu lado é um presente, e espero que tenhamos muitos mais anos juntos pela frente.\n\nTe amo infinitamente,';
+        } else if (template === 'casamento') {
+          letterMessage.value = 'Feliz aniversário de casamento, meu amor!\n\nCada ano ao seu lado reafirma que escolhi a pessoa certa para compartilhar minha vida. Obrigado(a) por ser meu parceiro(a), meu melhor amigo(a), meu amor. Que nossa história continue a ser escrita com muito amor e companheirismo.\n\nPara sempre seu(sua),';
+        } else if (template === 'declaracao') {
+          letterMessage.value = 'Meu amor,\n\nAs palavras parecem insuficientes para expressar tudo o que sinto por você. Você ilumina meus dias, me inspira a ser melhor e faz meu coração bater mais forte. Não consigo imaginar minha vida sem seu sorriso, sem seu abraço, sem seu amor.\n\nEu te amo mais do que as palavras podem expressar,';
+        }
+      }
+      
+      // Handle photo uploads
+      document.getElementById('upload-photos').addEventListener('change', function(event) {
+        const photoList = document.getElementById('photo-list');
+        
+        Array.from(this.files).forEach(file => {
+          // Create thumbnail preview
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const photoEntry = document.createElement('div');
+            photoEntry.className = 'photo-entry';
+            photoEntry.innerHTML = `
+              <img src="${e.target.result}" style="height: 100px; margin-right: 10px;">
+              <input type="text" placeholder="Legenda para a foto" class="photo-caption">
+              <button class="remove-button" onclick="this.parentNode.remove()">Remover</button>
+            `;
+            photoList.appendChild(photoEntry);
+          }
+          reader.readAsDataURL(file);
+        });
+      });
+      
+      // Preview the present
+      function previewPresent() {
+        // Na implementação real, você criaria uma visualização do presente
+        alert('Funcionalidade de pré-visualização ainda em desenvolvimento.\nNo produto final, você poderia ver como o presente ficará para o destinatário.');
+      }
+      
+      // Save and finalize the present
+      function savePresent() {
+        // Na implementação real, você enviaria os dados para seu servidor
+        alert('Presente salvo com sucesso!\n\nVocê receberá por email um link exclusivo para compartilhar com seu parceiro(a). Este link ficará disponível pelo período contratado.');
+        
+        // Redirecionar para página de sucesso
+        window.location.href = 'sucesso.html';
+      }
+    </script>
+  </body>
+</html>

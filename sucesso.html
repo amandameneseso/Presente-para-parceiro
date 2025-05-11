@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presente Criado com Sucesso!</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      header {
+        padding: 30px 0;
+      }
+      
+      h1 {
+        color: #ff6b6b;
+        margin-bottom: 15px;
+      }
+      
+      .success-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 40px;
+        margin-bottom: 40px;
+      }
+      
+      .success-icon {
+        font-size: 80px;
+        color: #4CAF50;
+        margin-bottom: 20px;
+      }
+      
+      .present-link {
+        background-color: #f8f8f8;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 18px;
+        margin: 30px 0;
+        word-break: break-all;
+      }
+      
+      .copy-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      
+      .share-options {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+      }
+      
+      .share-button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      
+      .whatsapp {
+        background-color: #25D366;
+      }
+      
+      .facebook {
+        background-color: #1877F2;
+      }
+      
+      .email {
+        background-color: #D44638;
+      }
+      
+      .instructions {
+        margin-top: 40px;
+        text-align: left;
+      }
+      
+      .instruction-step {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+      }
+      
+      .step-number {
+        background-color: #ff6b6b;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+      
+      .step-content {
+        flex-grow: 1;
+      }
+      
+      .cta-buttons {
+        margin-top: 30px;
+      }
+      
+      .primary-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 0 10px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      .secondary-button {
+        background-color: transparent;
+        color: #ff6b6b;
+        border: 2px solid #ff6b6b;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 0 10px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+      
+      .step {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+      }
+      
+      .step::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+        z-index: -1;
+      }
+      
+      .step:last-child::after {
+        display: none;
+      }
+      
+      .step-number-progress {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #ddd;
+        color: white;
+        border-radius: 50%;
+        line-height: 30px;
+        margin-bottom: 5px;
+      }
+      
+      .step.active .step-number-progress {
+        background-color: #ff6b6b;
+      }
+      
+      .step.completed .step-number-progress {
+        background-color: #4CAF50;
+      }
+      
+      .clouds {
+        z-index: -1;
+      }
+      
+      /* Confetti animation */
+      .confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+      }
+      
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="confetti-container" id="confetti-container">
+      <!-- Confetti elements will be added here by JavaScript -->
+    </div>
+    
+    <div class="container">
+      <header>
+        <h1>Presente Criado com Sucesso!</h1>
+        <p>Seu presente personalizado está pronto para ser compartilhado.</p>
+      </header>
+      
+      <div class="progress-steps">
+        <div class="step completed">
+          <div class="step-number-progress">1</div>
+          <div>Compra</div>
+        </div>
+        <div class="step completed">
+          <div class="step-number-progress">2</div>
+          <div>Personalização</div>
+        </div>
+        <div class="step active">
+          <div class="step-number-progress">3</div>
+          <div>Finalização</div>
+        </div>
+      </div>
+      
+      <div class="success-card">
+        <div class="success-icon">🎉</div>
+        <h2>Seu presente está pronto!</h2>
+        <p>Compartilhe o link abaixo com seu parceiro(a) para que ele(a) possa abrir seu presente especial.</p>
+        
+        <div class="present-link" id="present-link">
+          https://presenteparaparceiro.com/presente/maria-e-joao-2025
+        </div>
+        
+        <button class="copy-button" onclick="copyLink()">Copiar Link</button>
+        
+        <div class="share-options">
+          <a href="#" class="share-button whatsapp" onclick="shareWhatsApp()">
+            📱
+          </a>
+          <a href="#" class="share-button facebook" onclick="shareFacebook()">
+            📘
+          </a>
+          <a href="#" class="share-button email" onclick="shareEmail()">
+            ✉️
+          </a>
+        </div>
+      </div>
+      
+      <div class="instructions">
+        <h2>O que fazer agora?</h2>
+        
+        <div class="instruction-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Compartilhe o Link</h3>
+            <p>Envie o link do presente para seu parceiro(a) através do método que preferir: WhatsApp, e-mail, mensagem, etc.</p>
+          </div>
+        </div>
+        
+        <div class="instruction-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Escolha o Momento Certo</h3>
+            <p>Encontre o momento ideal para que seu parceiro(a) abra o presente, talvez durante uma videochamada para que você possa ver a reação.</p>
+          </div>
+        </div>
+        
+        <div class="instruction-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Salve para Sempre</h3>
+            <p>Este presente digital ficará disponível pelo período que você contratou. Lembre-se que você pode acessá-lo e atualizar o conteúdo a qualquer momento.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-buttons">
+        <a href="personalizar.html" class="secondary-button">Editar Presente</a>
+        <a href="index.html" class="primary-button">Voltar ao Início</a>
+      </div>
+    </div>
+    
+    <div class="clouds">
+      <div class="cloud cloud-1">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-2">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-3">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-4">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+    </div>
+    
+    <script>
+      // Copy link to clipboard
+      function copyLink() {
+        const link = document.getElementById('present-link').innerText;
+        navigator.clipboard.writeText(link).then(() => {
+          alert('Link copiado para a área de transferência!');
+        });
+      }
+      
+      // Share on WhatsApp
+      function shareWhatsApp() {
+        const link = document.getElementById('present-link').innerText;
+        const whatsappUrl = `https://wa.me/?text=Preparei um presente especial para você! Abra este link: ${encodeURIComponent(link)}`;
+        window.open(whatsappUrl, '_blank');
+      }
+      
+      // Share on Facebook
+      function shareFacebook() {
+        const link = document.getElementById('present-link').innerText;
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+        window.open(facebookUrl, '_blank');
+      }
+      
+      // Share via Email
+      function shareEmail() {
+        const link = document.getElementById('present-link').innerText;
+        const subject = 'Um presente especial para você';
+        const body = `Olá,\n\nPreparei um presente especial para você. Abra este link:\n\n${link}\n\nCom carinho!`;
+        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoUrl, '_blank');
+      }
+      
+      // Create confetti
+      function createConfetti() {
+        const container = document.getElementById('confetti-container');
+        const colors = ['#ff6b6b', '#4CAF50', '#2196F3', '#FFC107', '#9C27B0'];
+        
+        for (let i = 0; i < 100; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = -10 + 'px';
+          confetti.style.width = Math.random() * 10 + 5 + 'px';
+          confetti.style.height = Math.random() * 10 + 5 + 'px';
+          confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+          
+          // Add animation
+          confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+          confetti.style.animationDelay = Math.random() * 5 + 's';
+          
+          container.appendChild(confetti);
+        }
+      }
+      
+      // Create animation for confetti
+      const style = document.createElement('style');
+      style.innerHTML = `
+        @keyframes fall {
+          0% { top: -10px; transform: translateX(0) rotate(0deg); }
+          100% { top: 100vh; transform: translateX(${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Start confetti when page loads
+      window.addEventListener('load', createConfetti);
+    </script>
+  </body>
+</html>

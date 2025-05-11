@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presente para Parceiro - Loja</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      header {
+        text-align: center;
+        padding: 30px 0;
+      }
+      
+      h1 {
+        color: #ff6b6b;
+        margin-bottom: 15px;
+      }
+      
+      .product-description {
+        text-align: center;
+        margin-bottom: 40px;
+        line-height: 1.6;
+      }
+      
+      .pricing-plans {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+      }
+      
+      .plan {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 25px;
+        width: 280px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+      
+      .plan:hover {
+        transform: translateY(-10px);
+      }
+      
+      .plan h2 {
+        color: #ff6b6b;
+        margin-top: 0;
+      }
+      
+      .price {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        margin: 20px 0;
+      }
+      
+      .features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 25px;
+        text-align: left;
+      }
+      
+      .features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .features li:last-child {
+        border-bottom: none;
+      }
+      
+      .buy-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      .buy-button:hover {
+        background-color: #ff5252;
+      }
+      
+      .how-it-works {
+        margin-bottom: 50px;
+      }
+      
+      .step {
+        display: flex;
+        margin-bottom: 30px;
+        align-items: center;
+      }
+      
+      .step-number {
+        background-color: #ff6b6b;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+      
+      .step-content {
+        flex-grow: 1;
+      }
+      
+      .testimonials {
+        margin-bottom: 50px;
+      }
+      
+      .testimonial {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+      
+      .testimonial-author {
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: right;
+      }
+      
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #333;
+        color: white;
+      }
+      
+      .home-button {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #ff6b6b;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+      }
+      
+      .clouds {
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Presente para Parceiro</h1>
+        <p>Surpreenda quem você ama com um presente único e personalizado</p>
+      </header>
+      
+      <div class="product-description">
+        <h2>Um presente virtual cheio de amor</h2>
+        <p>
+          Nosso presente virtual permite que você crie uma experiência única e personalizada para seu parceiro ou parceira.
+          Com músicas escolhidas por você, mensagens de amor, fotos de momentos especiais e até jogos divertidos, 
+          este presente digital será algo que seu amor guardará para sempre.
+        </p>
+      </div>
+      
+      <div class="pricing-plans">
+        <div class="plan">
+          <h2>Básico</h2>
+          <div class="price">R$ 49,90</div>
+          <ul class="features">
+            <li>Página de presente personalizada</li>
+            <li>Playlist com 3 músicas</li>
+            <li>Carta de amor</li>
+            <li>Validade: 3 meses</li>
+          </ul>
+          <button class="buy-button" onclick="openCheckout('basic')">Comprar Agora</button>
+        </div>
+        
+        <div class="plan">
+          <h2>Premium</h2>
+          <div class="price">R$ 79,90</div>
+          <ul class="features">
+            <li>Página de presente personalizada</li>
+            <li>Playlist com 10 músicas</li>
+            <li>Carta de amor</li>
+            <li>Álbum de fotos (até 10 fotos)</li>
+            <li>Validade: 1 ano</li>
+          </ul>
+          <button class="buy-button" onclick="openCheckout('premium')">Comprar Agora</button>
+        </div>
+        
+        <div class="plan">
+          <h2>Exclusivo</h2>
+          <div class="price">R$ 129,90</div>
+          <ul class="features">
+            <li>Página de presente personalizada</li>
+            <li>Playlist ilimitada</li>
+            <li>Carta de amor</li>
+            <li>Álbum de fotos ilimitado</li>
+            <li>Jogo personalizado</li>
+            <li>Linha do tempo da relação</li>
+            <li>Validade: Vitalício</li>
+          </ul>
+          <button class="buy-button" onclick="openCheckout('exclusive')">Comprar Agora</button>
+        </div>
+      </div>
+      
+      <div class="how-it-works">
+        <h2>Como funciona?</h2>
+        
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Escolha seu plano</h3>
+            <p>Selecione o plano que melhor atende suas necessidades e clique em "Comprar Agora".</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Personalize seu presente</h3>
+            <p>Após a compra, você receberá acesso ao nosso painel de personalização, onde poderá adicionar músicas, fotos, mensagens e mais.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Receba seu link único</h3>
+            <p>Assim que terminar a personalização, você receberá um link único para compartilhar com seu parceiro ou parceira.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Surpreenda seu amor</h3>
+            <p>Envie o link para seu parceiro ou parceira e veja a reação de surpresa e alegria!</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonials">
+        <h2>O que nossos clientes dizem</h2>
+        
+        <div class="testimonial">
+          <p>"Minha namorada ficou emocionada com o presente! As músicas que selecionei trouxeram lembranças maravilhosas. Valeu cada centavo!"</p>
+          <div class="testimonial-author">- Rafael S.</div>
+        </div>
+        
+        <div class="testimonial">
+          <p>"A facilidade de personalização é incrível. Consegui criar algo único para meu marido em menos de 30 minutos. Ele adorou!"</p>
+          <div class="testimonial-author">- Carla M.</div>
+        </div>
+        
+        <div class="testimonial">
+          <p>"Meu parceiro não é fã de presentes materiais, então esta foi a solução perfeita. Ele guarda o link até hoje e revisita sempre!"</p>
+          <div class="testimonial-author">- João P.</div>
+        </div>
+      </div>
+      
+      <a href="index.html" class="home-button">Voltar para Home</a>
+    </div>
+    
+    <div class="clouds">
+      <div class="cloud cloud-1">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-2">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-3">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+      <div class="cloud cloud-4">
+        <img src="imagens/nuvem-100.png" alt="" />
+      </div>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 Presente para Parceiro - Todos os direitos reservados</p>
+    </footer>
+    
+    <script>
+      function openCheckout(plan) {
+        // Aqui você integraria com um sistema de pagamento como PayPal, Stripe, MercadoPago, etc.
+        alert('Em breve você será redirecionado para nossa página de pagamento!\nPlano selecionado: ' + plan);
+        
+        // Na implementação real, você redirecionaria para um checkout:
+        // window.location.href = 'checkout.html?plan=' + plan;
+      }
+    </script>
+  </body>
+</html>

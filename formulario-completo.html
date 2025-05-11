@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presente para Parceiro - Formulário Completo</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1, h2, h3 {
+      color: #ff6b6b;
+      text-align: center;
+    }
+
+    .form-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .form-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ddd;
+      z-index: 1;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background-color: #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .step.active .step-number {
+      background-color: #ff6b6b;
+    }
+
+    .step.completed .step-number {
+      background-color: #4CAF50;
+    }
+
+    .form-section {
+      display: none;
+      margin-bottom: 30px;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .photo-uploader {
+      border: 2px dashed #ddd;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .photo-uploader:hover {
+      border-color: #ff6b6b;
+    }
+
+    .photo-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .photo-item {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-item .remove-photo {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: rgba(255, 0, 0, 0.7);
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .music-list, .moment-list {
+      margin-bottom: 20px;
+    }
+
+    .music-item, .moment-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .music-item input, .moment-item input, .moment-item textarea {
+      margin-right: 10px;
+      flex: 1;
+    }
+
+    .remove-button {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .form-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .nav-button {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .nav-button.prev {
+      background-color: #ddd;
+    }
+
+    .payment-options {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .payment-option {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .payment-option.selected {
+      border-color: #ff6b6b;
+      background-color: rgba(255, 107, 107, 0.1);
+    }
+
+    .payment-option img {
+      height: 30px;
+      margin-bottom: 10px;
+    }
+
+    .price-summary {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .clouds {
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Criar Presente Personalizado</h1>
+    <p style="text-align: center; margin-bottom: 30px;">Crie um presente único e especial para seu parceiro(a)</p>
+
+    <div class="form-steps">
+      <div class="step active" id="step-1">
+        <div class="step-number">1</div>
+        <div>Informações</div>
+      </div>
+      <div class="step" id="step-2">
+        <div class="step-number">2</div>
+        <div>Músicas</div>
+      </div>
+      <div class="step" id="step-3">
+        <div class="step-number">3</div>
+        <div>Fotos</div>
+      </div>
+      <div class="step" id="step-4">
+        <div class="step-number">4</div>
+        <div>Momentos</div>
+      </div>
+      <div class="step" id="step-5">
+        <div class="step-number">5</div>
+        <div>Pagamento</div>
+      </div>
+    </div>
+
+    <form id="present-form">
+      <!-- Seção 1: Informações Básicas -->
+      <div class="form-section active" id="section-1">
+        <h2>Informações Básicas</h2>
+        
+        <div class="form-group">
+          <label for="seu-nome">Seu Nome</label>
+          <input type="text" id="seu-nome" name="seu-nome" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="seu-email">Seu Email</label>
+          <input type="email" id="seu-email" name="seu-email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="nome-parceiro">Nome do Parceiro(a)</label>
+          <input type="text" id="nome-parceiro" name="nome-parceiro" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="data-especial">Data Especial (opcional)</label>
+          <input type="date" id="data-especial" name="data-especial">
+        </div>
+        
+        <div class="form-group">
+          <label for="mensagem-especial">Mensagem Especial</label>
+          <textarea id="mensagem-especial" name="mensagem-especial" rows="5" placeholder="Escreva uma mensagem especial para seu parceiro(a)..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="plano">Escolha seu Plano</label>
+          <select id="plano" name="plano" required>
+            <option value="">Selecione um plano</option>
+            <option value="basico">Plano Básico - R$ 49,90</option>
+            <option value="premium">Plano Premium - R$ 79,90</option>
+            <option value="exclusivo">Plano Exclusivo - R$ 129,90</option>
+          </select>
+        </div>
+        
+        <div class="form-navigation">
+          <div></div> <!-- Espaço vazio para manter o alinhamento -->
+          <button type="button" class="nav-button next" onclick="nextStep(1)">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Seção 2: Músicas -->
+      <div class="form-section" id="section-2">
+        <h2>Adicionar Músicas</h2>
+        <p>Adicione músicas que têm significado especial para vocês.</p>
+        
+        <div class="music-list" id="music-list">
+          <div class="music-item">
+            <input type="text" name="musica-nome[]" placeholder="Nome da música" required>
+            <input type="text" name="musica-artista[]" placeholder="Artista" required>
+            <button type="button" class="remove-button" onclick="removeMusic(this)">Remover</button>
+          </div>
+        </div>
+        
+        <button type="button" class="add-button" onclick="addMusic()">+ Adicionar Música</button>
+        
+        <div class="form-group">
+          <label for="musicas-upload">Upload de Arquivos MP3 (opcional)</label>
+          <div class="photo-uploader" onclick="document.getElementById('musicas-upload').click()">
+            <input type="file" id="musicas-upload" name="musicas-upload[]" accept=".mp3" multiple style="display:none">
+            <div>Clique para selecionar arquivos MP3</div>
+            <div id="musicas-selecionadas"></div>
+          </div>
+        </div>
+        
+        <div class="form-navigation">
+          <button type="button" class="nav-button prev" onclick="prevStep(2)">Anterior</button>
+          <button type="button" class="nav-button next" onclick="nextStep(2)">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Seção 3: Fotos -->
+      <div class="form-section" id="section-3">
+        <h2>Adicionar Fotos</h2>
+        <p>Adicione fotos de momentos especiais que vocês compartilharam.</p>
+        
+        <div class="form-group">
+          <label for="fotos-upload">Upload de Fotos</label>
+          <div class="photo-uploader" onclick="document.getElementById('fotos-upload').click()">
+            <input type="file" id="fotos-upload" name="fotos-upload[]" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
+            <div>Clique para selecionar fotos</div>
+          </div>
+          <div class="photo-preview" id="photo-preview"></div>
+        </div>
+        
+        <div class="form-navigation">
+          <button type="button" class="nav-button prev" onclick="prevStep(3)">Anterior</button>
+          <button type="button" class="nav-button next" onclick="nextStep(3)">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Seção 4: Momentos Especiais -->
+      <div class="form-section" id="section-4">
+        <h2>Momentos Especiais</h2>
+        <p>Registre momentos especiais da história de vocês para criar uma linha do tempo.</p>
+        
+        <div class="moment-list" id="moment-list">
+          <div class="moment-item">
+            <input type="date" name="momento-data[]" required>
+            <textarea name="momento-descricao[]" placeholder="Descreva o que aconteceu nesse dia..." required></textarea>
+            <button type="button" class="remove-button" onclick="removeMoment(this)">Remover</button>
+          </div>
+        </div>
+        
+        <button type="button" class="add-button" onclick="addMoment()">+ Adicionar Momento</button>
+        
+        <div class="form-navigation">
+          <button type="button" class="nav-button prev" onclick="prevStep(4)">Anterior</button>
+          <button type="button" class="nav-button next" onclick="nextStep(4)">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Seção 5: Pagamento -->
+      <div class="form-section" id="section-5">
+        <h2>Finalizar e Pagar</h2>
+        
+        <div class="price-summary">
+          <div class="price-row">
+            <span>Plano selecionado:</span>
+            <span id="selected-plan">Plano Premium</span>
+          </div>
+          <div class="price-row">
+            <span>Valor do plano:</span>
+            <span id="plan-price">R$ 79,90</span>
+          </div>
+          <div class="price-total">
+            <span>Total:</span>
+            <span id="total-price">R$ 79,90</span>
+          </div>
+        </div>
+        
+        <h3>Escolha a forma de pagamento</h3>
+        
+        <div class="payment-options">
+          <div class="payment-option" onclick="selectPayment('credit-card')" id="credit-card-option">
+            <img src="imagens/credit-card.png" alt="Cartão de Crédito" onerror="this.src='https://cdn-icons-png.flaticon.com/512/179/179457.png'">
+            <div>Cartão de Crédito</div>
+          </div>
+          <div class="payment-option" onclick="selectPayment('pix')" id="pix-option">
+            <img src="imagens/pix.png" alt="PIX" onerror="this.src='https://logopng.com.br/logos/pix-106.png'">
+            <div>PIX</div>
+          </div>
+          <div class="payment-option" onclick="selectPayment('boleto')" id="boleto-option">
+            <img src="imagens/boleto.png" alt="Boleto" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2168/2168739.png'">
+            <div>Boleto</div>
+          </div>
+        </div>
+        
+        <div id="credit-card-fields" style="display: none;">
+          <div class="form-group">
+            <label for="card-number">Número do Cartão</label>
+            <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000">
+          </div>
+          
+          <div class="form-group">
+            <label for="card-name">Nome no Cartão</label>
+            <input type="text" id="card-name" name="card-name">
+          </div>
+          
+          <div style="display: flex; gap: 15px;">
+            <div class="form-group" style="flex: 1;">
+              <label for="card-expiry">Data de Validade</label>
+              <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA">
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+              <label for="card-cvv">CVV</label>
+              <input type="text" id="card-cvv" name="card-cvv" placeholder="123">
+            </div>
+          </div>
+        </div>
+        
+        <div id="pix-fields" style="display: none; text-align: center;">
+          <p>Finalize sua compra e você receberá o QR Code do PIX para pagamento.</p>
+          <img src="imagens/pix-qrcode.png" alt="QR Code PIX" onerror="this.src='https://www.qrcode-monkey.com/_next/static/media/default-preview-qr.35e4327d.svg'" style="max-width: 200px; margin: 20px auto;">
+        </div>
+        
+        <div id="boleto-fields" style="display: none; text-align: center;">
+          <p>Finalize sua compra e você receberá o boleto por e-mail.</p>
+          <img src="imagens/boleto-sample.png" alt="Exemplo de Boleto" onerror="this.src='https://gerencianet.com.br/wp-content/uploads/2019/11/boleto.jpg'" style="max-width: 300px; margin: 20px auto;">
+        </div>
+        
+        <div class="form-navigation">
+          <button type="button" class="nav-button prev" onclick="prevStep(5)">Anterior</button>
+          <button type="button" class="nav-button" onclick="submitForm()">Finalizar Compra</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="clouds">
+    <div class="cloud cloud-1">
+      <img src="imagens/nuvem-100.png" alt="" />
+    </div>
+    <div class="cloud cloud-2">
+      <img src="imagens/nuvem-100.png" alt="" />
+    </div>
+    <div class="cloud cloud-3">
+      <img src="imagens/nuvem-100.png" alt="" />
+    </div>
+    <div class="cloud cloud-4">
+      <img src="imagens/nuvem-100.png" alt="" />
+    </div>
+  </div>
+
+  <script>
+    // Navegação entre seções
+    function nextStep(currentStep) {
+      // Validar campos obrigatórios da seção atual
+      const currentSection = document.getElementById(`section-${currentStep}`);
+      const requiredFields = currentSection.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value) {
+          field.style.borderColor = 'red';
+          isValid = false;
+        } else {
+          field.style.borderColor = '#ddd';
+        }
+      });
+      
+      if (!isValid) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+      
+      // Avançar para a próxima seção
+      document.getElementById(`section-${currentStep}`).classList.remove('active');
+      document.getElementById(`section-${currentStep + 1}`).classList.add('active');
+      
+      // Atualizar indicadores de etapa
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      document.getElementById(`step-${currentStep}`).classList.add('completed');
+      document.getElementById(`step-${currentStep + 1}`).classList.add('active');
+      
+      // Se estiver avançando para a seção de pagamento, atualizar o resumo
+      if (currentStep + 1 === 5) {
+        updatePaymentSummary();
+      }
+    }
+    
+    function prevStep(currentStep) {
+      document.getElementById(`section-${currentStep}`).classList.remove('active');
+      document.getElementById(`section-${currentStep - 1}`).classList.add('active');
+      
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      document.getElementById(`step-${currentStep - 1}`).classList.remove('completed');
+      document.getElementById(`step-${currentStep - 1}`).classList.add('active');
+    }
+    
+    // Gerenciar músicas
+    function addMusic() {
+      const musicList = document.getElementById('music-list');
+      const musicItem = document.createElement('div');
+      musicItem.className = 'music-item';
+      musicItem.innerHTML = `
+        <input type="text" name="musica-nome[]" placeholder="Nome da música" required>
+        <input type="text" name="musica-artista[]" placeholder="Artista" required>
+        <button type="button" class="remove-button" onclick="removeMusic(this)">Remover</button>
+      `;
+      musicList.appendChild(musicItem);
+    }
+    
+    function removeMusic(button) {
+      const musicItem = button.parentNode;
+      musicItem.parentNode.removeChild(musicItem);
+    }
+    
+    // Gerenciar momentos
+    function addMoment() {
+      const momentList = document.getElementById('moment-list');
+      const momentItem = document.createElement('div');
+      momentItem.className = 'moment-item';
+      momentItem.innerHTML = `
+        <input type="date" name="momento-data[]" required>
+        <textarea name="momento-descricao[]" placeholder="Descreva o que aconteceu nesse dia..." required></textarea>
+        <button type="button" class="remove-button" onclick="removeMoment(this)">Remover</button>
+      `;
+      momentList.appendChild(momentItem);
+    }
+    
+    function removeMoment(button) {
+      const momentItem = button.parentNode;
+      momentItem.parentNode.removeChild(momentItem);
+    }
+    
+    // Upload de fotos
+    function handlePhotoUpload(event) {
+      const files = event.target.files;
+      const preview = document.getElementById('photo-preview');
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const photoItem = document.createElement('div');
+          photoItem.className = 'photo-item';
+          photoItem.innerHTML = `
+            <img src="${e.target.result}" alt="Foto">
+            <div class="remove-photo" onclick="this.parentNode.remove()">×</div>
+          `;
+          preview.appendChild(photoItem);
+        }
+        
+        reader.readAsDataURL(file);
+      }
+    }
+    
+    // Upload de músicas
+    document.getElementById('musicas-upload').addEventListener('change', function(event) {
+      const files = event.target.files;
+      const musicasDiv = document.getElementById('musicas-selecionadas');
+      
+      let fileList = '';
+      for (let i = 0; i < files.length; i++) {
+        fileList += `<div>${files[i].name}</div>`;
+      }
+      
+      musicasDiv.innerHTML = fileList;
+    });
+    
+    // Gerenciar pagamento
+    function selectPayment(method) {
+      // Resetar todas as opções
+      document.getElementById('credit-card-option').classList.remove('selected');
+      document.getElementById('pix-option').classList.remove('selected');
+      document.getElementById('boleto-option').classList.remove('selected');
+      
+      document.getElementById('credit-card-fields').style.display = 'none';
+      document.getElementById('pix-fields').style.display = 'none';
+      document.getElementById('boleto-fields').style.display = 'none';
+      
+      // Ativar a opção selecionada
+      document.getElementById(`${method}-option`).classList.add('selected');
+      document.getElementById(`${method}-fields`).style.display = 'block';
+    }
+    
+    // Atualizar resumo de pagamento
+    function updatePaymentSummary() {
+      const planoSelect = document.getElementById('plano');
+      const planoText = planoSelect.options[planoSelect.selectedIndex].text;
+      const planoValor = planoText.split('-')[1].trim();
+      
+      document.getElementById('selected-plan').textContent = planoText.split('-')[0].trim();
+      document.getElementById('plan-price').textContent = planoValor;
+      document.getElementById('total-price').textContent = planoValor;
+    }
+    
+    // Enviar formulário
+    function submitForm() {
+      // Validar se uma forma de pagamento foi selecionada
+      const paymentSelected = document.querySelector('.payment-option.selected');
+      if (!paymentSelected) {
+        alert('Por favor, selecione uma forma de pagamento.');
+        return;
+      }
+      
+      // Aqui você enviaria os dados para o servidor
+      // Na implementação real, isso seria feito via AJAX ou um formulário normal
+      
+      alert('Compra finalizada com sucesso! Você será redirecionado para a página de confirmação.');
+      
+      // Redirecionar para página de sucesso (em uma implementação real)
+      // window.location.href = 'sucesso.html';
+    }
+    
+    // Inicializar primeira opção de pagamento
+    selectPayment('credit-card');
+  </script>
+</body>
+</html>

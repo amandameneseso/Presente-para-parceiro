@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - Presente para Parceiro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #4CAF50;
+        --dark-color: #333;
+        --light-color: #f8f9fa;
+        --border-color: #ddd;
+        --sidebar-width: 250px;
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--light-color);
+        color: var(--dark-color);
+      }
+      
+      .dashboard {
+        display: flex;
+        min-height: 100vh;
+      }
+      
+      .sidebar {
+        width: var(--sidebar-width);
+        background-color: var(--dark-color);
+        color: white;
+        padding: 20px 0;
+        position: fixed;
+        height: 100vh;
+        overflow-y: auto;
+      }
+      
+      .sidebar-header {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      .sidebar-header h1 {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+      
+      .sidebar-menu {
+        list-style: none;
+      }
+      
+      .sidebar-menu li {
+        margin-bottom: 5px;
+      }
+      
+      .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      
+      .sidebar-menu a:hover,
+      .sidebar-menu a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left: 3px solid var(--primary-color);
+      }
+      
+      .sidebar-menu .icon {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+      
+      .content {
+        flex: 1;
+        margin-left: var(--sidebar-width);
+        padding: 20px;
+      }
+      
+      .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .content-title h1 {
+        font-size: 1.8rem;
+        color: var(--dark-color);
+      }
+      
+      .content-actions {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .button .icon {
+        margin-right: 5px;
+      }
+      
+      .button.secondary {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+      }
+      
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      
+      .stat-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      
+      .stat-card .stat-title {
+        color: var(--dark-color);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .stat-card .stat-title .icon {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+        color: var(--primary-color);
+      }
+      
+      .stat-card .stat-value {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .stat-card .stat-compare {
+        font-size: 0.8rem;
+        color: #777;
+      }
+      
+      .stat-card .stat-compare.positive {
+        color: var(--secondary-color);
+      }
+      
+      .stat-card .stat-compare.negative {
+        color: var(--primary-color);
+      }
+      
+      .chart-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      
+      .chart-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .chart-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+      
+      .chart-period {
+        font-size: 0.9rem;
+        color: #777;
+      }
+      
+      .chart {
+        width: 100%;
+        height: 250px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+      }
+      
+      .table-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+      
+      .table-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .table-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+      
+      .table-actions {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .table th, 
+      .table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .table th {
+        background-color: var(--light-color);
+        font-weight: bold;
+      }
+      
+      .table tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+      
+      .table td .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+      }
+      
+      .table td .status.completed {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: var(--secondary-color);
+      }
+      
+      .table td .status.pending {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: #FFC107;
+      }
+      
+      .table td .status.cancelled {
+        background-color: rgba(255, 107, 107, 0.1);
+        color: var(--primary-color);
+      }
+      
+      .table td .actions {
+        display: flex;
+        gap: 5px;
+      }
+      
+      .table td .action-button {
+        background-color: transparent;
+        color: #777;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      
+      .table td .action-button:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      
+      .pagination .page-item {
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+      }
+      
+      .pagination .page-item.active {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+      
+      .pagination .page-item:hover:not(.active) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      
+      .user-info {
+        display: flex;
+        align-items: center;
+      }
+      
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+        background-color: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      
+      @media (max-width: 768px) {
+        .sidebar {
+          transform: translateX(-100%);
+          transition: transform 0.3s;
+          z-index: 10;
+        }
+        
+        .sidebar.active {
+          transform: translateX(0);
+        }
+        
+        .content {
+          margin-left: 0;
+        }
+        
+        .mobile-menu {
+          display: flex;
+        }
+        
+        .chart-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-menu" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="dashboard">
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h1>Presente para Parceiro</h1>
+          <p>Painel Administrativo</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="active">
+              <span class="icon"><i class="fas fa-home"></i></span>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+              <span>Vendas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fas fa-users"></i></span>
+              <span>Clientes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fas fa-gift"></i></span>
+              <span>Presentes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fas fa-chart-bar"></i></span>
+              <span>Relatórios</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon"><i class="fas fa-cog"></i></span>
+              <span>Configurações</span>
+            </a>
+          </li>
+          <li>
+            <a href="../index.html">
+              <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+              <span>Sair</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="content">
+        <div class="content-header">
+          <div class="content-title">
+            <h1>Dashboard</h1>
+            <p>Bem-vindo ao painel administrativo do seu negócio</p>
+          </div>
+          
+          <div class="content-actions">
+            <button class="button secondary">
+              <span class="icon"><i class="fas fa-calendar"></i></span>
+              <span>Hoje</span>
+            </button>
+            <button class="button">
+              <span class="icon"><i class="fas fa-download"></i></span>
+              <span>Exportar</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-title">
+              <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+              <span>Vendas Totais</span>
+            </div>
+            <div class="stat-value">R$ 8.945,00</div>
+            <div class="stat-compare positive">
+              <i class="fas fa-arrow-up"></i> 12% desde o mês passado
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-title">
+              <span class="icon"><i class="fas fa-users"></i></span>
+              <span>Novos Clientes</span>
+            </div>
+            <div class="stat-value">57</div>
+            <div class="stat-compare positive">
+              <i class="fas fa-arrow-up"></i> 5% desde o mês passado
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-title">
+              <span class="icon"><i class="fas fa-gift"></i></span>
+              <span>Presentes Criados</span>
+            </div>
+            <div class="stat-value">124</div>
+            <div class="stat-compare positive">
+              <i class="fas fa-arrow-up"></i> 18% desde o mês passado
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-title">
+              <span class="icon"><i class="fas fa-eye"></i></span>
+              <span>Visitas ao Site</span>
+            </div>
+            <div class="stat-value">2.845</div>
+            <div class="stat-compare negative">
+              <i class="fas fa-arrow-down"></i> 3% desde o mês passado
+            </div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Vendas Mensais</div>
+              <div class="chart-period">Janeiro - Maio 2025</div>
+            </div>
+            <div class="chart">
+              <p>Gráfico de vendas será exibido aqui</p>
+              <!-- Aqui você pode integrar bibliotecas de gráficos como Chart.js -->
+            </div>
+          </div>
+          
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Planos Mais Vendidos</div>
+              <div class="chart-period">Últimos 30 dias</div>
+            </div>
+            <div class="chart">
+              <p>Gráfico de planos será exibido aqui</p>
+              <!-- Aqui você pode integrar bibliotecas de gráficos como Chart.js -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">Últimas Vendas</div>
+            <div class="table-actions">
+              <button class="button secondary">
+                <span class="icon"><i class="fas fa-filter"></i></span>
+                <span>Filtrar</span>
+              </button>
+              <button class="button secondary">
+                <span class="icon"><i class="fas fa-download"></i></span>
+                <span>Exportar</span>
+              </button>
+            </div>
+          </div>
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Plano</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#5478</td>
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">JF</div>
+                    <div>
+                      <div>João Ferreira</div>
+                      <div style="font-size: 0.8rem; color: #777;">joao@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Premium</td>
+                <td>R$ 79,90</td>
+                <td>10/05/2025</td>
+                <td><span class="status completed">Completo</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-edit"></i></button>
+                    <button class="action-button"><i class="fas fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#5477</td>
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">CS</div>
+                    <div>
+                      <div>Carla Santos</div>
+                      <div style="font-size: 0.8rem; color: #777;">carla@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Exclusivo</td>
+                <td>R$ 129,90</td>
+                <td>09/05/2025</td>
+                <td><span class="status completed">Completo</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-edit"></i></button>
+                    <button class="action-button"><i class="fas fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#5476</td>
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">RL</div>
+                    <div>
+                      <div>Rafael Lima</div>
+                      <div style="font-size: 0.8rem; color: #777;">rafael@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Básico</td>
+                <td>R$ 49,90</td>
+                <td>09/05/2025</td>
+                <td><span class="status pending">Pendente</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-edit"></i></button>
+                    <button class="action-button"><i class="fas fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#5475</td>
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">MM</div>
+                    <div>
+                      <div>Maria Mendes</div>
+                      <div style="font-size: 0.8rem; color: #777;">maria@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Premium</td>
+                <td>R$ 79,90</td>
+                <td>08/05/2025</td>
+                <td><span class="status cancelled">Cancelado</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-edit"></i></button>
+                    <button class="action-button"><i class="fas fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#5474</td>
+                <td>
+                  <div class="user-info">
+                    <div class="user-avatar">PC</div>
+                    <div>
+                      <div>Paulo Costa</div>
+                      <div style="font-size: 0.8rem; color: #777;">paulo@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Exclusivo</td>
+                <td>R$ 129,90</td>
+                <td>07/05/2025</td>
+                <td><span class="status completed">Completo</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-edit"></i></button>
+                    <button class="action-button"><i class="fas fa-trash"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="pagination">
+            <div class="page-item"><i class="fas fa-angle-left"></i></div>
+            <div class="page-item active">1</div>
+            <div class="page-item">2</div>
+            <div class="page-item">3</div>
+            <div class="page-item"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // Mobile menu toggle
+      const mobileMenu = document.getElementById('mobile-menu');
+      const sidebar = document.getElementById('sidebar');
+      
+      mobileMenu.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+      });
+      
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768 && !sidebar.contains(event.target) && !mobileMenu.contains(event.target)) {
+          sidebar.classList.remove('active');
+        }
+      });
+    </script>
+  </body>
+</html>
