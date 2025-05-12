@@ -1,21 +1,24 @@
 body {
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* min-height: 100vh; */
+  /* min-height: 100dvh; */
+  height: 100dvh;
   flex-direction: column;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* Container principal dos botões */
 .botoes-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 40px;
   width: 90%;
   max-width: 1500px;
-  margin: auto;
-  margin-top: 290px;
+  /* margin: auto; */
+  /* margin-top: 290px; */
+  margin-top: auto;
   padding: 50px 20px;
   box-sizing: border-box;
   place-items: center;
@@ -130,8 +133,8 @@ footer p {
 .musicbox {
   height: 80px;
   width: 200px;
-  border: px solid black;
+  /* border: 5px solid black; */
   position: fixed;
-  bottom: 10px;
-  left: 90px;
+  bottom: 18px;
+  left: 95px;
 }

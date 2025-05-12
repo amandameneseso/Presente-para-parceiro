@@ -209,11 +209,11 @@ class Food extends WorldObject {
       }, 500)
     }
   }
-  setPos() {
+  setPos() { // define a posição da comida
     const { width, height } = wrapper.getBoundingClientRect()
     this.pos.setXy({
-      x: width / 2 - 36,
-      y: height - (height > 400 ? 200 : 100),
+      x: width / 2 - 60,
+      y: height - (height > 400 ? 200 : 80),
     })
     this.setStyles()
   }
