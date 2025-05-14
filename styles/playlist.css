@@ -11,7 +11,7 @@ body {
 }
 
 .record-player {
-  position: relative;
+  position: absolute;
   margin: 0 auto;
   transform-origin: center center;
   /* Base scale set to 1, will be adjusted in media queries */
