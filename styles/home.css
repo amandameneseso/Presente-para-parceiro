@@ -73,6 +73,16 @@ footer p {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* musicbox */
+.musicbox {
+  height: 80px;
+  width: 200px;
+  border: px solid black;
+  position: fixed;
+  bottom: 10px;
+  left: 90px;
+}
+
 /* Responsividade */
 @media (max-width: 1224px) {
   .botoes-container {
@@ -124,14 +134,8 @@ footer p {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(3px);
   }
-}
 
-/* musicbox */
-.musicbox {
-  height: 80px;
-  width: 200px;
-  border: px solid black;
-  position: fixed;
-  bottom: 10px;
-  left: 90px;
+  .musicbox {
+    display: none;
+  }
 }
