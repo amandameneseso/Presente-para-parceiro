@@ -86,6 +86,7 @@ nav {
   padding: 10px 20px;
   box-sizing: border-box;
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 nav ul {
@@ -144,6 +145,7 @@ main {
   .container {
     max-width: 100%; /* Ocupa toda a largura em telas pequenas */
     margin: 0; /* Remove as margens laterais em telas pequenas */
+    padding: 30px 5px;
   }
 }
 
@@ -151,38 +153,40 @@ main {
 .quiz-container {
   background-color: #a0b18b;
   color: rgb(255, 255, 255);
-  padding: 30px;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
-  width: 80%;
-  width: 600px;
+  width: 85%;
+  max-width: 700px;
   margin: auto;
   display: none;
   min-height: 200px;
-  /* min-width: 500px; */
-  padding: 20px;
+  padding: 20px 35px;
   box-sizing: border-box;
 }
 
 .question {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  font-size: 1.25em;
+  margin-bottom: 25px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .answers button {
-  background-color: #ffffff00;
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin: 5px;
+  border-radius: 8px;
+  padding: 12px 22px;
+  margin: 8px 0;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  font-size: 1.05em;
+  font-weight: 500;
+  transition: all 0.25s ease;
   display: block;
   width: 100%;
   text-align: left;
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
 .answers button:hover {
@@ -261,8 +265,9 @@ main {
 
 @media (max-width: 768px) {
   .quiz-container {
-    width: 100%;
-    padding: 20px;
+    width: 90%;
+    padding: 25px;
+    max-width: none;
   }
 
   #div1 {
@@ -306,16 +311,33 @@ main {
 
 @media (max-width: 480px) {
   .quiz-container {
-    padding: 15px;
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 30px 20px;
+    width: 90%;
   }
 
   .question {
-    font-size: 1em;
+    font-size: 1.1em;
+    line-height: 1.3;
   }
 
   .answers button {
-    font-size: 0.85em;
-    padding: 8px 12px;
+    font-size: 0.95em;
+    padding: 12px 15px;
+    margin: 6px 0;
+  }
+
+  .divDoBotao {
+    bottom: 65px;
+    left: 15px;
   }
 
   .next-btn,
@@ -325,3 +347,44 @@ main {
   }
 }
 
+/* Para telas muito estreitas (Samsung S8+ e similares) */
+@media (max-width: 380px) {
+  .quiz-container {
+    width: 100%; /* Maior que o container pai para dar mais largura */
+    padding: 15px;
+  }
+
+  .container {
+    padding: 30px 10px;
+  }
+
+  main {
+    padding: 5px;
+  }
+
+  .answers button {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+
+  .question {
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+
+  .imagem-inferior-esquerda {
+    bottom: -30px;
+    left: -20px;
+    max-width: 70px;
+  }
+
+  .divDoBotao {
+    bottom: 80px;
+    left: 10px;
+  }
+
+  .botao {
+    width: 40px;
+    height: 40px;
+  }
+}
