@@ -291,7 +291,7 @@ input#volume-control::-moz-range-track {
   #playlist {
     width: 230px;
     font-size: 14px;
-    bottom: 50px;
+    bottom: 70px;
   }
 }
 
@@ -305,7 +305,7 @@ input#volume-control::-moz-range-track {
   #playlist {
     width: 200px;
     font-size: 13px;
-    bottom: 40px;
+    bottom: 60px;
   }
 
   .divDoBotao {
@@ -339,7 +339,7 @@ input#volume-control::-moz-range-track {
     width: 180px;
     padding: 8px;
     font-size: 12px;
-    bottom: 35px;
+    bottom: 60px;
   }
 }
 
