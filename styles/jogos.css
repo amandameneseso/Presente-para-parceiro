@@ -257,7 +257,6 @@ main {
 
 .feedback {
   margin-top: 15px;
-  font-style: italic;
   font-size: 1em;
   text-align: center;
 }
@@ -267,6 +266,45 @@ main {
   font-size: 1.2em;
   color: #a0b18b;
   margin-bottom: 20px;
+}
+
+@media (max-width: 1150px) {
+  .quiz-container {
+    width: 100%;
+    padding: 20px 70px 20px 70px;
+    margin: auto;
+  }
+
+  .answers button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+  }
+
+  .next-btn,
+  .retry-btn {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .container {
+    max-width: 80%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /*coelho*/
+  .imagem-inferior-esquerda {
+    position: absolute;
+    bottom: -40px;
+    left: -39px;
+    max-width: 90px;
+    height: auto;
+  }
+}
+@media (min-width: 769px) and (max-width: 1004px) {
+  #div3 {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -394,5 +432,11 @@ main {
   .botao {
     width: 40px;
     height: 40px;
+  }
+
+  .feedback {
+    font-size: 0.9em;
+    font-family: "Sono", sans-serif;
+    font-style: normal;
   }
 }
