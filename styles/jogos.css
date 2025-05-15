@@ -108,8 +108,34 @@ nav li {
 }
 
 nav a {
-  color: white;
+  color: rgb(255, 255, 248);
   text-decoration: none;
+  font-size: 17px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  text-align: center;
+  width: 100%;
+  height: 7%;
+}
+
+#div1 {
+  position: relative;
+  top: -20px;
+}
+
+#div2 {
+  position: relative;
+  top: -20px;
+}
+
+#div3 {
+  position: relative;
+  top: -20px;
 }
 
 main {
@@ -178,7 +204,7 @@ main {
 }
 
 .answers button {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.12);
   color: white;
   border: none;
   border-radius: 8px;
@@ -186,17 +212,17 @@ main {
   margin: 8px 0;
   cursor: pointer;
   font-size: 1.05em;
-  font-weight: 500;
+  /* font-weight: 600; */
   transition: all 0.25s ease;
   display: block;
   width: 100%;
-  text-align: left;
-  line-height: 1.4;
+  text-align: center;
+  line-height: 1.2;
   word-wrap: break-word;
 }
 
 .answers button:hover {
-  background-color: #b89c85;
+  transform: scale(1.025);
 }
 
 .answers button.correct {
@@ -380,7 +406,7 @@ main {
   }
 
   .divDoBotao {
-    bottom: 65px;
+    bottom: 15px;
     left: 15px;
   }
 
@@ -424,7 +450,7 @@ main {
 
   /*botão voltar*/
   .divDoBotao {
-    bottom: 10px;
+    bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
   }
