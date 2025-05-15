@@ -188,15 +188,40 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 } // Limpa o estilo das respostas
 
+// function showResults() {
+//   resetState();
+//   questionContainer.innerText = `Você acertou ${score} de ${questions.length} perguntas!`;
+//   resultsContainer.innerText = `Sua pontuação: ${Math.round(
+//     (score / questions.length) * 100
+//   )}%`;
+//   resultsContainer.style.display = "block";
+//   retryButton.style.display = "block"; // Exibe o botão de refazer quiz
+// } // Exibe os resultados
+
 function showResults() {
-  resetState();
-  questionContainer.innerText = `Você acertou ${score} de ${questions.length} perguntas!`;
-  resultsContainer.innerText = `Sua pontuação: ${Math.round(
-    (score / questions.length) * 100
-  )}%`;
-  resultsContainer.style.display = "block";
+  resetState(); // Limpa a interface atual da pergunta/respostas
+  const scorePercentage = Math.round((score / questions.length) * 100);   // Calcula a pontuação percentual
+  let resultImageUrl = ""; // Variável para armazenar o URL da imagem
+
+  // Define a imagem com base na pontuação
+  if (scorePercentage === 100) {
+    resultImageUrl = "../imagens/rabbit.gif"; // imagem para 100%
+  } else if (scorePercentage >= 75) {
+    resultImageUrl = "../imagens/rabbit2.gif"; // Entre 75% e 99%
+  } else if (scorePercentage >= 50) {
+    resultImageUrl = "../imagens/50e74.gif"; // Entre 50% e 74%
+  } else {
+    resultImageUrl = "../imagens/rabbittriste.gif"; // Menos de 50%
+  }
+  questionContainer.innerHTML = `<p style="text-align: center">Você acertou ${score} de ${questions.length} perguntas!</p>`; // contagem de acertos
+  resultsContainer.innerHTML = `
+        <p>Sua pontuação: ${scorePercentage}%</p>
+        <img src="${resultImageUrl}" style="max-width: 100%; height: auto; margin-top: 20px;">
+    `;
+
+  resultsContainer.style.display = "block"; // Exibe o container de resultados
   retryButton.style.display = "block"; // Exibe o botão de refazer quiz
-} // Exibe os resultados
+}
 
 function nextQuestion() {
   currentQuestionIndex++;
@@ -249,17 +274,15 @@ document.getElementById("jogo3-link").addEventListener("click", function (e) {
   document.getElementById("jogo3-container").style.display = "block";
 }); // Adiciona um evento de clique ao link do jogo 3 que oculta os outros jogos
 
-document.getElementById('jogo1-link').addEventListener('click', function () {
-  document.getElementById('mensagem-inicial').style.display = 'none';
+document.getElementById("jogo1-link").addEventListener("click", function () {
+  document.getElementById("mensagem-inicial").style.display = "none";
   // document.getElementById('start-button').style.display = 'block';
 }); // oculta a mensagem inicial quando o jogo 1 é clicado
 
-document.getElementById('jogo2-link').addEventListener('click', function () {
-  document.getElementById('mensagem-inicial').style.display = 'none';
+document.getElementById("jogo2-link").addEventListener("click", function () {
+  document.getElementById("mensagem-inicial").style.display = "none";
 }); // oculta a mensagem inicial quando o jogo 2 é clicado
 
-document.getElementById('jogo3-link').addEventListener('click', function () {
-  document.getElementById('mensagem-inicial').style.display = 'none';
+document.getElementById("jogo3-link").addEventListener("click", function () {
+  document.getElementById("mensagem-inicial").style.display = "none";
 }); // oculta a mensagem inicial quando o jogo 3 é clicado
-
-
