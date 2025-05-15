@@ -357,6 +357,7 @@ main {
     height: auto;
   }
 }
+
 @media (min-width: 769px) and (max-width: 1004px) {
   #div3 {
     display: none;
@@ -506,17 +507,17 @@ main {
   }
 
   .divDoBotao {
-    bottom: 20px;
-    left: 20px;
-    /* left: 50%; centraliza o botao horizontalmente */
-    /* transform: translateX(-50%); centraliza o botao horizontalmente */
+    bottom: 4px;
+    /* left: 20px; */
+    left: 50%; /* centraliza o botao horizontalmente */
+    transform: translateX(-50%); /* centraliza o botao horizontalmente */
   }
 
   /* diminui o tamanho do botao */
-  /* .botao img {
+  .botao img {
     width: 40px;
     height: 40px;
-  } */
+  }
 }
 
 /* Para telas muito estreitas (Samsung S8+ e similares) */
@@ -593,5 +594,21 @@ main {
   .botao img {
     width: 40px;
     height: 40px;
+  }
+}
+
+@media (max-width: 320px) {
+  .nav a {
+    font-size: 0.9em;
+  }
+
+  .container {
+    padding: 5px 2px;
+    font-size: 0.9em;
+  }
+
+  .imagem-inferior-esquerda {
+    bottom: -30px;
+    left: -34px;
   }
 }
