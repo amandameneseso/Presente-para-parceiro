@@ -188,30 +188,24 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 } // Limpa o estilo das respostas
 
-// function showResults() {
-//   resetState();
-//   questionContainer.innerText = `Você acertou ${score} de ${questions.length} perguntas!`;
-//   resultsContainer.innerText = `Sua pontuação: ${Math.round(
-//     (score / questions.length) * 100
-//   )}%`;
-//   resultsContainer.style.display = "block";
-//   retryButton.style.display = "block"; // Exibe o botão de refazer quiz
-// } // Exibe os resultados
-
 function showResults() {
   resetState(); // Limpa a interface atual da pergunta/respostas
-  const scorePercentage = Math.round((score / questions.length) * 100);   // Calcula a pontuação percentual
+  const scorePercentage = Math.round((score / questions.length) * 100); // Calcula a pontuação percentual
   let resultImageUrl = ""; // Variável para armazenar o URL da imagem
 
   // Define a imagem com base na pontuação
-  if (scorePercentage === 100) {
-    resultImageUrl = "../imagens/rabbit.gif"; // imagem para 100%
-  } else if (scorePercentage >= 75) {
-    resultImageUrl = "../imagens/rabbit2.gif"; // Entre 75% e 99%
-  } else if (scorePercentage >= 50) {
-    resultImageUrl = "../imagens/50e74.gif"; // Entre 50% e 74%
+  if (scorePercentage >= 70) {
+    // pontuação maior ou igual a 70
+    resultImageUrl = "../imagens/rabbit.gif";
+  } else if (scorePercentage >= 60) {
+    // pontuação entre 60 e 69
+    resultImageUrl = "../imagens/rabbit2.gif";
+  } else if (scorePercentage >= 30) {
+    // pontuação entre 30 e 59
+    resultImageUrl = "../imagens/50e74.gif";
   } else {
-    resultImageUrl = "../imagens/rabbittriste.gif"; // Menos de 50%
+    // pontuação menor que 30
+    resultImageUrl = "../imagens/rabbittriste.gif";
   }
   questionContainer.innerHTML = `<p style="text-align: center">Você acertou ${score} de ${questions.length} perguntas!</p>`; // contagem de acertos
   resultsContainer.innerHTML = `
@@ -221,6 +215,14 @@ function showResults() {
 
   resultsContainer.style.display = "block"; // Exibe o container de resultados
   retryButton.style.display = "block"; // Exibe o botão de refazer quiz
+
+  if (scorePercentage >=50 && typeof confetti === "function") {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  } // Adiciona efeito de confetes se a pontuação for maior ou igual a 50
 }
 
 function nextQuestion() {
@@ -242,12 +244,13 @@ nextButton.addEventListener("click", nextQuestion);
 finishButton.addEventListener("click", () => {
   showResults();
   finishButton.style.display = "none";
-  confetti({
-    particleCount: 100, // Número de confetes
-    spread: 70, // Espalhamento dos confetes
-    origin: { y: 0.6 }, // Ponto de origem (opcional, ajusta a altura)
-  }); // Adiciona efeito de confetes (canvas-confetti)
-}); // Finaliza o quiz
+});
+//   confetti({
+//     particleCount: 100, // Número de confetes
+//     spread: 70, // Espalhamento dos confetes
+//     origin: { y: 0.6 }, // Ponto de origem (opcional, ajusta a altura)
+//   }); // Adiciona efeito de confetes (canvas-confetti)
+// }); // Finaliza o quiz
 
 retryButton.addEventListener("click", restartQuiz);
 
