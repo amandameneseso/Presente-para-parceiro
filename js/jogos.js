@@ -196,16 +196,16 @@ function showResults() {
   // Define a imagem com base na pontuação
   if (scorePercentage >= 70) {
     // pontuação maior ou igual a 70
-    resultImageUrl = "../imagens/rabbit.gif";
+    resultImageUrl = "imagens/rabbit.gif";
   } else if (scorePercentage >= 60) {
     // pontuação entre 60 e 69
-    resultImageUrl = "../imagens/rabbit2.gif";
+    resultImageUrl = "imagens/rabbit2.gif";
   } else if (scorePercentage >= 30) {
     // pontuação entre 30 e 59
-    resultImageUrl = "../imagens/50e74.gif";
+    resultImageUrl = "imagens/50e74.gif";
   } else {
     // pontuação menor que 30
-    resultImageUrl = "../imagens/rabbittriste.gif";
+    resultImageUrl = "imagens/rabbittriste.gif";
   }
   questionContainer.innerHTML = `<p style="text-align: center">Você acertou ${score} de ${questions.length} perguntas!</p>`; // contagem de acertos
   resultsContainer.innerHTML = `
