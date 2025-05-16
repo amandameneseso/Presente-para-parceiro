@@ -7,50 +7,59 @@ body {
   flex-direction: column;
 }
 
+.botoes-container-telaPequena {
+  display: none;
+}
+
 /* Container principal dos botões */
-.botoes-container {
+.botoes-container-telaGrande {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 72px); /* (colunas, largura do botão) */
+  gap: 7px;
+  padding: 10px;
   width: 90%;
   max-width: 1500px;
   /* margin: auto; */
   /* margin-top: 290px; */
-  margin-top: auto;
-  padding: 10px 55px;
+  /* margin-top: auto; */
+  margin: 35px 5px 35px 5px;
   box-sizing: border-box;
   place-items: center;
 }
 
 /* Estilização dos botões */
 .botao {
-  background: rgba(255, 255, 255, 0.9);
-  border: 3px solid #5f9abd;
-  border-radius: 20px;
-  padding: 25px;
+  /* background: rgba(255, 255, 255, 0.9); */
+  /* border: 3px solid #5f9abd; */
+  /* border-radius: 12px; */
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   text-decoration: none;
   color: #4b7b97;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Ocupa todo o espaço disponível */
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  width: 80px;
+  height: 80px;
   max-width: 250px; /* Define um limite máximo */
 }
 
-.botao:hover {
+/* .botao:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 1);
-}
+} */
 
 .icone {
-  width: 70px;
-  height: 70px;
+  width: 43px;
+  height: 43px;
   transition: transform 0.3s ease;
+}
+
+.botao span {
+  font-size: 0.82em;
 }
 
 .botao:hover .icone {
@@ -104,7 +113,10 @@ footer p {
   body {
     font-size: 0.9em;
   }
-  .botoes-container {
+  .botoes-container-telaPequena {
+    display: none;
+  }
+  .botoes-container-telaGrande {
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; Permite que os botões quebrem para a próxima linha */
@@ -135,7 +147,10 @@ footer p {
 }
 
 @media (max-width: 830px) {
-  .botoes-container {
+  .botoes-container-telaPequena {
+    display: none;
+  }
+  .botoes-container-telaGrande {
     padding: 10px 10px;
     gap: 10px;
     margin-top: 90px;
@@ -162,7 +177,11 @@ footer p {
     font-size: 0.85em; /* Ajuste a fonte do body */
   }
 
-  .botoes-container {
+  .celular {
+    display: none;
+  }
+
+  .botoes-container-telaPequena {
     margin: 60px 5px 60px 5px;
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -207,7 +226,11 @@ footer p {
     font-size: 0.85em; /* Ajuste a fonte do body */
   }
 
-  .botoes-container {
+  .celular {
+    display: none;
+  }
+
+  .botoes-container-telaPequena {
     margin: 60px 5px 60px 5px;
     /* margin-left: auto; */
     /* margin-right: auto; */
