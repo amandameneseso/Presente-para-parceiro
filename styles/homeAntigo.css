@@ -108,15 +108,15 @@ footer p {
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; Permite que os botões quebrem para a próxima linha */
-    justify-content: center;
+    /* justify-content: center; Centraliza os itens horizontalmente quando eles quebram para várias linhas */
     align-items: center;
     gap: 15px;
-    padding: 10px 80px;
+    padding: 10px 90px;
     width: 100%;
     box-sizing: border-box;
   }
   .botao {
-    max-width: 190px;
+    max-width: 200px;
     padding: 20px;
   }
   .icone {
@@ -134,101 +134,42 @@ footer p {
   }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 768px) {
   .botoes-container {
-    padding: 10px 10px;
-    gap: 10px;
-    margin-top: 90px;
+    padding: 30px 10px;
+    gap: 20px;
+    margin-top: 60px;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* margin: auto; */
+    width: 80%;
   }
   .botao {
-    padding: 16px;
-  }
-  .musicbox {
-    transform: scale(0.8);
-    bottom: 10px;
-    left: 60px;
-  }
-  footer {
-    padding: 15px;
+    padding: 20px;
+    /* width: 70%; */
   }
 }
-
 @media (max-width: 480px) {
   body {
-    font-size: 0.85em; /* Ajuste a fonte do body */
+    font-size: 0.9em;
   }
-
   .botoes-container {
-    margin: 60px 5px 60px 5px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    display: grid;
-    grid-template-columns: repeat(4, 72px); /* (colunas, largura do botão) */
-    gap: 20px;
-    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   .botao {
-    width: 80px; /* Largura fixa (ajuste para coincidir com grid-template-columns) */
-    height: 80px;
-    padding: 8px;
-    gap: 6px; /* Espaço entre ícone e texto */
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    box-shadow: none;
-    color: rgb(249, 252, 255);
+    padding: 14px;
+    /* width: 200px; */
   }
-
-  /* .icone {
-    width: 35px;
-    height: 35px;
-  } */
-
-  .botao span {
-    font-size: 0.85em;
+  .icone {
+    width: 50px;
+    height: 50px;
   }
-
   footer {
     padding: 14px;
-    /* background: rgba(255, 255, 255, 0.15); */
-    /* backdrop-filter: blur(3px); */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(3px);
   }
-
-  /* ajustar musicbox */
-}
-
-@media (max-width: 380px) {
-  body {
-    font-size: 0.85em; /* Ajuste a fonte do body */
-  }
-
-  .botoes-container {
-    margin: 60px 5px 60px 5px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    display: grid;
-    grid-template-columns: repeat(4, 70px);
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .botao {
-    width: 70px;
-    height: 70px;
-    padding: 8px;
-    gap: 6px; /* Espaço entre ícone e texto */
-    border-radius: 12px;
-  }
-
-  /* .icone {
-    width: 35px;
-    height: 35px;
-  } */
-
-  /* ajustar musicbox */
 }
