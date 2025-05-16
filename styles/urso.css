@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 body {
   background-color: #48c1bb;
   overscroll-behavior: contain;
@@ -24,10 +26,10 @@ body {
   top: 280px;
   /* font-style: italic; */
   color: #f0f0f0;
-  font-size: 0.9em;
-
-  left: 23%;
+  font-size: 0.95em;
+  left: 25%;
   /* transform: translateX(-28%); */
+  font-family: "Nunito", sans-serif;
 }
 
 .object {
@@ -333,6 +335,12 @@ body {
   100% {
     width: 20;
     height: 20;
+  }
+}
+
+@media (max-width: 1224px) {
+  .wrapper.show-message::after {
+    left: 27%;
   }
 }
 

@@ -1,11 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 body {
   /* min-height: 100vh; */
   /* min-height: 100dvh; */
   height: 100dvh;
   flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Container principal dos botões */
@@ -13,13 +12,13 @@ body {
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 40px;
+  gap: 20px;
   width: 90%;
   max-width: 1500px;
   /* margin: auto; */
   /* margin-top: 290px; */
   margin-top: auto;
-  padding: 50px 20px;
+  padding: 10px 55px;
   box-sizing: border-box;
   place-items: center;
 }
@@ -58,6 +57,31 @@ body {
   transform: scale(1.1);
 }
 
+.musicbox {
+  height: 80px;
+  width: 200px;
+  position: fixed;
+  bottom: 18px;
+  left: 95px;
+}
+
+.musicbox img {
+  position: absolute;
+  height: 80px;
+  bottom: 0px;
+  left: -75px;
+  z-index: 1;
+}
+
+.musicbox iframe {
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  width: 120%;
+  height: 84px;
+  position: absolute;
+  top: -20px;
+}
+
 /* Footer fixo */
 footer {
   margin-top: auto;
@@ -70,21 +94,46 @@ footer {
 
 footer p {
   margin: 0;
-  /* color: #5f9abd; */
-  color: #ffffff;
+  color: #ebf5fc;
   font-size: 1em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Nunito", sans-serif;
 }
 
-/* Responsividade */
 @media (max-width: 1224px) {
+  body {
+    font-size: 0.9em;
+  }
   .botoes-container {
-    margin-top: 30px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* flex-wrap: wrap; Permite que os botões quebrem para a próxima linha */
+    /* justify-content: center; Centraliza os itens horizontalmente quando eles quebram para várias linhas */
     align-items: center;
+    gap: 15px;
+    padding: 10px 90px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .botao {
+    max-width: 200px;
+    padding: 20px;
+  }
+  .icone {
+    width: 55px;
+    height: 55px;
+  }
+  .musicbox {
+    transform: scale(0.85);
+    bottom: 10px;
+    left: 70px;
+  }
+  .musicbox img {
+    bottom: 10px;
+    left: -70px;
   }
 }
+
 @media (max-width: 768px) {
   .botoes-container {
     padding: 30px 10px;
@@ -99,10 +148,6 @@ footer p {
     padding: 20px;
     /* width: 70%; */
   }
-  /* .icone {
-            width: 50px;
-            height: 50px;
-        } */
 }
 @media (max-width: 480px) {
   body {
@@ -127,14 +172,4 @@ footer p {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(3px);
   }
-}
-
-/* musicbox */
-.musicbox {
-  height: 80px;
-  width: 200px;
-  /* border: 5px solid black; */
-  position: fixed;
-  bottom: 18px;
-  left: 95px;
 }
