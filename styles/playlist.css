@@ -18,6 +18,55 @@ body {
   transform: scale(1);
 }
 
+/* Estilo para o popup */
+.tooltip {
+  position: fixed; /* Usamos fixed para posicionamento mais confiável */
+  background-color: #6ccca4;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  text-align: center;
+  /* Posicionamento */
+  left: 61.2%;
+  top: 50.9%;
+  transform: translate(-50%, -50%); /* Centralizado inicialmente */
+  margin-top: -150px; /* Ajuste vertical */
+  margin-left: 80px; /* Ajuste horizontal */
+}
+
+/* Seta do popup */
+.tooltip:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #6ccca4 transparent transparent transparent;
+}
+
+/* Animação de piscar */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+}
+
 .plinth {
   position: relative;
   background-color: #445c52;
