@@ -1,10 +1,21 @@
 body {
   overflow: hidden;
   background-color: #708d81;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .record-player {
-  position: relative;
+  position: absolute;
+  margin: 0 auto;
+  transform-origin: center center;
+  /* Base scale set to 1, will be adjusted in media queries */
+  transform: scale(1);
 }
 
 .plinth {
@@ -247,15 +258,95 @@ input#volume-control::-moz-range-track {
 }
 
 #playlist {
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px;
+  width: 260px;
   padding: 10px;
   border: none;
   border-radius: 5px;
   background-color: #618576;
   color: white;
   font-size: 16px;
+  z-index: 20;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.divDoBotao {
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  z-index: 100;
+}
+
+/* Media queries para responsividade */
+
+/* Telas médias */
+@media (max-width: 768px) {
+  .record-player {
+    transform: scale(0.9);
+  }
+
+  #playlist {
+    width: 230px;
+    font-size: 14px;
+    bottom: 70px;
+  }
+}
+
+/* Telas pequenas */
+@media (max-width: 576px) {
+  .record-player {
+    transform: scale(0.7);
+    margin-top: -30px;
+  }
+
+  #playlist {
+    width: 200px;
+    font-size: 13px;
+    bottom: 60px;
+  }
+
+  .divDoBotao {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .botao {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icone {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Telas muito pequenas (como o Samsung S8+) */
+@media (max-width: 380px) {
+  .record-player {
+    transform: scale(0.55);
+    margin-top: -60px;
+  }
+
+  #playlist {
+    width: 180px;
+    padding: 8px;
+    font-size: 12px;
+    bottom: 60px;
+  }
+}
+
+/* Telas extremamente pequenas */
+@media (max-width: 320px) {
+  .record-player {
+    transform: scale(0.45);
+    margin-top: -80px;
+  }
 }
