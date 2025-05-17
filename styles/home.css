@@ -132,103 +132,103 @@ footer p {
     bottom: 10px;
     left: -70px;
   }
-}
 
-@media (max-width: 830px) {
-  .botoes-container {
-    padding: 10px 10px;
-    gap: 10px;
-    margin-top: 90px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* margin: auto; */
-  }
-  .botao {
-    padding: 16px;
-  }
-  .musicbox {
-    transform: scale(0.8);
-    bottom: 10px;
-    left: 60px;
-  }
-  footer {
-    padding: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 0.85em; /* Ajuste a fonte do body */
+  @media (max-width: 830px) {
+    .botoes-container {
+      padding: 10px 10px;
+      gap: 10px;
+      margin-top: 90px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* margin: auto; */
+    }
+    .botao {
+      padding: 16px;
+    }
+    .musicbox {
+      transform: scale(0.8);
+      bottom: 10px;
+      left: 60px;
+    }
+    footer {
+      padding: 15px;
+    }
   }
 
-  .botoes-container {
-    margin: 60px 5px 60px 5px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    display: grid;
-    grid-template-columns: repeat(4, 72px); /* (colunas, largura do botão) */
-    gap: 20px;
-    padding: 10px;
-  }
+  @media (max-width: 480px) {
+    body {
+      font-size: 0.85em; /* Ajuste a fonte do body */
+    }
 
-  .botao {
-    width: 80px; /* Largura fixa (ajuste para coincidir com grid-template-columns) */
-    height: 80px;
-    padding: 8px;
-    gap: 6px; /* Espaço entre ícone e texto */
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    box-shadow: none;
-    color: rgb(249, 252, 255);
-  }
+    .botoes-container {
+      margin: 60px 5px 60px 5px;
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      display: grid;
+      grid-template-columns: repeat(4, 72px); /* (colunas, largura do botão) */
+      gap: 20px;
+      padding: 10px;
+    }
 
-  /* .icone {
+    .botao {
+      width: 80px; /* Largura fixa (ajuste para coincidir com grid-template-columns) */
+      height: 80px;
+      padding: 8px;
+      gap: 6px; /* Espaço entre ícone e texto */
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+      box-shadow: none;
+      color: rgb(249, 252, 255);
+    }
+
+    /* .icone {
     width: 35px;
     height: 35px;
   } */
 
-  .botao span {
-    font-size: 0.85em;
+    .botao span {
+      font-size: 0.85em;
+    }
+
+    footer {
+      padding: 14px;
+      /* background: rgba(255, 255, 255, 0.15); */
+      /* backdrop-filter: blur(3px); */
+    }
+
+    /* ajustar musicbox */
   }
 
-  footer {
-    padding: 14px;
-    /* background: rgba(255, 255, 255, 0.15); */
-    /* backdrop-filter: blur(3px); */
-  }
+  @media (max-width: 380px) {
+    body {
+      font-size: 0.85em; /* Ajuste a fonte do body */
+    }
 
-  /* ajustar musicbox */
-}
+    .botoes-container {
+      margin: 60px 5px 60px 5px;
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 15px;
+      padding: 10px;
+    }
 
-@media (max-width: 380px) {
-  body {
-    font-size: 0.85em; /* Ajuste a fonte do body */
-  }
+    .botao {
+      width: 70px;
+      height: 70px;
+      padding: 8px;
+      gap: 6px; /* Espaço entre ícone e texto */
+      border-radius: 12px;
+    }
 
-  .botoes-container {
-    margin: 60px 5px 60px 5px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    display: grid;
-    grid-template-columns: repeat(4, 70px);
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .botao {
-    width: 70px;
-    height: 70px;
-    padding: 8px;
-    gap: 6px; /* Espaço entre ícone e texto */
-    border-radius: 12px;
-  }
-
-  /* .icone {
+    /* .icone {
     width: 35px;
     height: 35px;
   } */
 
-  /* ajustar musicbox */
+    /* ajustar musicbox */
+  }
 }
