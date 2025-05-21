@@ -1,24 +1,32 @@
+// Seleção de elementos do DOM
 const finishButton = document.getElementById("finish-button");
 const feedbackContainer = document.getElementById("feedback");
 const startButton = document.getElementById("start-button");
-const quizContainer = document.querySelector(".quiz-container");
+const quizContainer = document.querySelector(".quiz-container"); // Container principal do quiz
 
+// Evento de clique para o botão de iniciar o quiz
 startButton.addEventListener("click", () => {
-  startButton.style.display = "none";
-  quizContainer.style.display = "block";
-  startQuiz();
-}); // Adiciona um evento de clique ao botão de iniciar, retirando display: none e colocando display: block
+  startButton.style.display = "none"; // Esconde o botão de iniciar
+  quizContainer.style.display = "block"; // Exibe o container do quiz
+  startQuiz(); // Inicia o quiz
+});
 
+// Mais seleções de elementos do DOM
 const questionContainer = document.getElementById("question-container");
 const answerButtonsContainer = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-button");
 const retryButton = document.getElementById("retry-button");
 const resultsContainer = document.getElementById("results-container");
 
-let currentQuestionIndex = 0; // Armazena o índice da pergunta atual
+// Variáveis de estado do quiz
+let currentQuestionIndex = 0; // Armazena o índice da pergunta atual
 let score = 0; // Armazena a pontuação
 let questions = []; // Armazena as perguntas
 
+/**
+ * Embaralha os elementos de um array.
+ * @param {Array} array - O array a ser embaralhado.
+ */
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -26,6 +34,7 @@ function shuffleArray(array) {
   }
 }
 
+// Definição das perguntas do quiz
 questions = [
   {
     question: "Onde foi nosso primeiro encontro?",
@@ -115,13 +124,19 @@ questions = [
 ];
 shuffleArray(questions); // Embaralha as perguntas
 
+/**
+ * Inicia o quiz, resetando a pontuação e o índice da pergunta.
+ */
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   nextButton.innerText = "Próxima";
   showQuestion();
-} // Inicia o quiz
+}
 
+/**
+ * Exibe a pergunta atual na interface do quiz.
+ */
 function showQuestion() {
   resetState(); // Garante que o estado seja resetado antes de mostrar uma nova pergunta
   const currentQuestion = questions[currentQuestionIndex];
@@ -138,8 +153,11 @@ function showQuestion() {
     button.addEventListener("click", selectAnswer);
     answerButtonsContainer.appendChild(button);
   });
-} // Exibe a pergunta
+}
 
+/**
+ * Limpa o estado da interface do quiz.
+ */
 function resetState() {
   clearStatusClass(document.body);
   nextButton.style.display = "none";
@@ -150,30 +168,39 @@ function resetState() {
   }
   feedbackContainer.innerText = "";
   finishButton.style.display = "none";
-} // Limpa o estado
+}
 
+/**
+ * Lida com a seleção de uma resposta pelo usuário.
+ * @param {Event} e - O objeto de evento do clique.
+ */
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct);
   Array.from(answerButtonsContainer.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
-    button.disabled = true;
+    button.disabled = true; // Desabilita todos os botões após a seleção
   });
   if (correct) {
     score++;
   }
   if (questions.length > currentQuestionIndex + 1) {
-    nextButton.style.display = "block";
+    nextButton.style.display = "block"; // Exibe o botão "Próxima"
   } else {
-    finishButton.style.display = "block";
+    finishButton.style.display = "block"; // Exibe o botão "Finalizar quiz"
   }
   const currentQuestion = questions[currentQuestionIndex];
   feedbackContainer.innerText = correct
     ? currentQuestion.correctFeedback
     : currentQuestion.wrongFeedback;
-} // Seleciona a resposta
+}
 
+/**
+ * Adiciona ou remove classes de estilo para indicar correção.
+ * @param {HTMLElement} element - O elemento HTML a ser estilizado.
+ * @param {boolean} correct - True se a resposta estiver correta, false caso contrário.
+ */
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
@@ -181,13 +208,20 @@ function setStatusClass(element, correct) {
   } else {
     element.classList.add("wrong");
   }
-} // Define o estilo das respostas
+}
 
+/**
+ * Remove as classes de estilo de correção de um elemento.
+ * @param {HTMLElement} element - O elemento HTML.
+ */
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
-} // Limpa o estilo das respostas
+}
 
+/**
+ * Exibe os resultados finais do quiz.
+ */
 function showResults() {
   resetState(); // Limpa a interface atual da pergunta/respostas
   const scorePercentage = Math.round((score / questions.length) * 100); // Calcula a pontuação percentual
@@ -195,16 +229,12 @@ function showResults() {
 
   // Define a imagem com base na pontuação
   if (scorePercentage >= 70) {
-    // pontuação maior ou igual a 70
     resultImageUrl = "imagens/rabbit.gif";
   } else if (scorePercentage >= 60) {
-    // pontuação entre 60 e 69
     resultImageUrl = "imagens/rabbit2.gif";
   } else if (scorePercentage >= 30) {
-    // pontuação entre 30 e 59
     resultImageUrl = "imagens/50e74.gif";
   } else {
-    // pontuação menor que 30
     resultImageUrl = "imagens/rabbittriste.gif";
   }
   questionContainer.innerHTML = `<p style="text-align: center">Você acertou ${score} de ${questions.length} perguntas!</p>`; // contagem de acertos
@@ -216,15 +246,19 @@ function showResults() {
   resultsContainer.style.display = "block"; // Exibe o container de resultados
   retryButton.style.display = "block"; // Exibe o botão de refazer quiz
 
-  if (scorePercentage >=50 && typeof confetti === "function") {
+  // Adiciona efeito de confetes se a pontuação for maior ou igual a 50
+  if (scorePercentage >= 50 && typeof confetti === "function") {
     confetti({
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
     });
-  } // Adiciona efeito de confetes se a pontuação for maior ou igual a 50
+  }
 }
 
+/**
+ * Avança para a próxima pergunta ou exibe os resultados se todas as perguntas foram respondidas.
+ */
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
@@ -232,60 +266,31 @@ function nextQuestion() {
   } else {
     showResults();
   }
-} // Passa para a próxima pergunta
+}
 
+/**
+ * Reinicia o quiz.
+ */
 function restartQuiz() {
   startQuiz(); // Reinicia o quiz
   retryButton.style.display = "none"; // Esconde o botão de refazer
 }
 
+// Ouvintes de eventos para os botões de navegação e controle do quiz
 nextButton.addEventListener("click", nextQuestion);
 
 finishButton.addEventListener("click", () => {
   showResults();
   finishButton.style.display = "none";
 });
-//   confetti({
-//     particleCount: 100, // Número de confetes
-//     spread: 70, // Espalhamento dos confetes
-//     origin: { y: 0.6 }, // Ponto de origem (opcional, ajusta a altura)
-//   }); // Adiciona efeito de confetes (canvas-confetti)
-// }); // Finaliza o quiz
 
 retryButton.addEventListener("click", restartQuiz);
 
-startQuiz(); // Inicia o quiz
-
+// Evento de clique para o link "Quiz" na navegação
 document.getElementById("jogo1-link").addEventListener("click", function (e) {
-  e.preventDefault();
-  document.getElementById("jogo1-container").style.display = "block";
-  document.getElementById("jogo2-container").style.display = "none";
-  document.getElementById("jogo3-container").style.display = "none";
-}); // Adiciona um evento de clique ao link do jogo 1 que oculta os outros jogos
-
-document.getElementById("jogo2-link").addEventListener("click", function (e) {
-  e.preventDefault();
-  document.getElementById("jogo1-container").style.display = "none";
-  document.getElementById("jogo2-container").style.display = "block";
-  document.getElementById("jogo3-container").style.display = "none";
-}); // Adiciona um evento de clique ao link do jogo 2 que oculta os outros jogos
-
-document.getElementById("jogo3-link").addEventListener("click", function (e) {
-  e.preventDefault();
-  document.getElementById("jogo1-container").style.display = "none";
-  document.getElementById("jogo2-container").style.display = "none";
-  document.getElementById("jogo3-container").style.display = "block";
-}); // Adiciona um evento de clique ao link do jogo 3 que oculta os outros jogos
-
-document.getElementById("jogo1-link").addEventListener("click", function () {
-  document.getElementById("mensagem-inicial").style.display = "none";
-  // document.getElementById('start-button').style.display = 'block';
-}); // oculta a mensagem inicial quando o jogo 1 é clicado
-
-document.getElementById("jogo2-link").addEventListener("click", function () {
-  document.getElementById("mensagem-inicial").style.display = "none";
-}); // oculta a mensagem inicial quando o jogo 2 é clicado
-
-document.getElementById("jogo3-link").addEventListener("click", function () {
-  document.getElementById("mensagem-inicial").style.display = "none";
-}); // oculta a mensagem inicial quando o jogo 3 é clicado
+  e.preventDefault(); // Previne o comportamento padrão do link
+  document.getElementById("jogo1-container").style.display = "block"; // Exibe o container do jogo
+  startButton.style.display = "block"; // Garante que o botão de iniciar esteja visível
+  quizContainer.style.display = "none"; // Garante que o quizContainer esteja oculto até o início
+  resetState(); // Reseta o estado do quiz para garantir que ele comece limpo
+});
